@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
-export default function ClubPage() {
-  return (
-    <main>
-      <TeamForm />
-      <TeamList />
-    </main>
-  );
-}
+// export default function ClubPage() {
+//   return (
+//     <main>
+//       <TeamForm />
+//       <TeamList />
+//     </main>
+//   );
+// }

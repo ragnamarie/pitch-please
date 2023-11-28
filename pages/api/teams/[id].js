@@ -1,4 +1,4 @@
-import { teams } from "@/lib/teams";
+import { teams } from "@/lib/data.js";
 
 export default function handler(request, response) {
   const { id } = request.query;
