@@ -9,5 +9,6 @@ export default function handler(request, response) {
     return response.status(404).json({ status: "Not Found" });
   }
 
+  console.log(team);
   response.status(200).json(team);
 }
