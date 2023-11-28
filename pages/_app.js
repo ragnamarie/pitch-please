@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }) {
       <SWRConfig value={{ fetcher }}>
         <Layout>
           <GlobalStyle />
-          <Component {...pageProps} />
+          <Component {...pageProps} teams={data} />
         </Layout>
       </SWRConfig>
     </>
