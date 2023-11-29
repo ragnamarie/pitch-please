@@ -8,8 +8,11 @@ import useSWR from "swr";
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
 export default function App({ Component, pageProps }) {
-  const { data: availableSlotsData, isLoading: isLoadingAvailableSlotsData } =
-    useSWR("/api/availableSlots", fetcher);
+  const {
+    data: availableSlotsData,
+    isLoading: isLoadingAvailableSlotsData,
+    mutate,
+  } = useSWR("/api/availableSlots", fetcher);
 
   const [selectedSlots, setSelectedSlots] = useState([]);
 
@@ -34,10 +37,17 @@ export default function App({ Component, pageProps }) {
       // Check if the slot is not already selected
       if (!selectedSlots.some((slot) => slot.id === selectedSlot.id)) {
         setSelectedSlots([...selectedSlots, selectedSlot]);
+        mutate((data) => {
+          const updatedData = data.map((slot) =>
+            slot.id === selectedSlot.id ? { ...slot, available: false } : slot
+          );
+          return updatedData;
+        }, false);
       }
-      console.log(availableSlotsData);
     }
   };
+
+  console.log(availableSlotsData);
 
   return (
     <>
