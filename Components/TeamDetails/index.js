@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import BookedSlots from "../BookedSlots";
 
 export default function TeamDetails() {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function TeamDetails() {
     <>
       <Link href="/club">← Back to List</Link>
       <h1>{data.name}</h1>
+      <BookedSlots bookedTimeSlots={data.bookedTimeSlots} />
     </>
   );
 }
