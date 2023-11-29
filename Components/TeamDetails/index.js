@@ -4,7 +4,7 @@ import useSWR from "swr";
 import BookedSlots from "../BookedSlots";
 import AvailableSlots from "../AvailableSlots";
 
-export default function TeamDetails() {
+export default function TeamDetails({ onSlotChange, availableTimeSlots }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -12,15 +12,12 @@ export default function TeamDetails() {
     `/api/teams/${id}`
   );
 
-  const { data: availableSlotsData, isLoading: isLoadingAvailableSlotsData } =
-    useSWR(`/api/availableSlots`);
-
-  if (isLoadingTeamData || isLoadingAvailableSlotsData) {
+  if (isLoadingTeamData) {
     return <h1>kick-off is just around the corner...</h1>;
   }
 
-  if (!teamData || !availableSlotsData) {
-    return <p>data not available</p>;
+  if (!teamData) {
+    return <p>teamdata not available</p>;
   }
 
   console.log(teamData);
@@ -29,8 +26,10 @@ export default function TeamDetails() {
     <>
       <Link href="/club">← Back to List</Link>
       <h1>{teamData.name}</h1>
-      {/* <BookedSlots bookedTimeSlots={availableSlotsData} /> */}
-      <AvailableSlots availableTimeSlots={availableSlotsData} />
+      <AvailableSlots
+        availableTimeSlots={availableTimeSlots}
+        onSlotChange={onSlotChange}
+      />
     </>
   );
 }
