@@ -1,4 +1,8 @@
 export default function BookedSlots({ bookedTimeSlots }) {
+  if (!bookedTimeSlots) {
+    return;
+  }
+
   return (
     <ul>
       {bookedTimeSlots.map((bookedTimeSlot) => (
