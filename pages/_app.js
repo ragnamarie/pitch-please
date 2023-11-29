@@ -11,18 +11,27 @@ export default function App({ Component, pageProps }) {
   const {
     data: availableSlotsData,
     isLoading: isLoadingAvailableSlotsData,
-    mutate,
+    mutate: mutateAvailableSlots,
   } = useSWR("/api/availableSlots", fetcher);
+
+  const {
+    data: teamData,
+    isLoading: isLoadingTeamData,
+    mutate: mutateTeamData,
+  } = useSWR("/api/teams", fetcher);
 
   const [selectedSlots, setSelectedSlots] = useState([]);
 
-  if (isLoadingAvailableSlotsData) {
+  if (isLoadingAvailableSlotsData || isLoadingTeamData) {
     return <h1>kick-off is just around the corner...</h1>;
   }
 
-  if (!availableSlotsData) {
+  if (!availableSlotsData || !teamData) {
     return;
   }
+
+  const teamID = teamData.id;
+  console.log(teamID);
 
   const handleSlotChange = (event) => {
     const selectedValue = event.target.value;
@@ -37,9 +46,11 @@ export default function App({ Component, pageProps }) {
       // Check if the slot is not already selected
       if (!selectedSlots.some((slot) => slot.id === selectedSlot.id)) {
         setSelectedSlots([...selectedSlots, selectedSlot]);
-        mutate((data) => {
-          const updatedData = data.map((slot) =>
-            slot.id === selectedSlot.id ? { ...slot, isAvailable: false } : slot
+        mutateAvailableSlots((availableSlotsData) => {
+          const updatedData = availableSlotsData.map((slot) =>
+            slot.id === selectedSlot.id
+              ? { ...slot, isAvailable: false, teamID: "1" }
+              : slot
           );
           return updatedData;
         }, false);
@@ -48,6 +59,7 @@ export default function App({ Component, pageProps }) {
   };
 
   console.log(availableSlotsData);
+  console.log(teamData);
 
   return (
     <>
