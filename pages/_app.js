@@ -30,10 +30,7 @@ export default function App({ Component, pageProps }) {
     return;
   }
 
-  const teamID = teamData.id;
-  console.log(teamID);
-
-  const handleSlotChange = (event) => {
+  function handleSlotChange(event) {
     const selectedValue = event.target.value;
     // Find the selected slot based on the value
     const selectedSlot = availableSlotsData.find(
@@ -45,18 +42,21 @@ export default function App({ Component, pageProps }) {
     if (selectedSlot) {
       // Check if the slot is not already selected
       if (!selectedSlots.some((slot) => slot.id === selectedSlot.id)) {
-        setSelectedSlots([...selectedSlots, selectedSlot]);
-        mutateAvailableSlots((availableSlotsData) => {
-          const updatedData = availableSlotsData.map((slot) =>
+        setSelectedSlots((prevSelectedSlots) => [
+          ...prevSelectedSlots,
+          selectedSlot,
+        ]);
+        mutateAvailableSlots((prevAvailableSlots) => {
+          const updatedData = prevAvailableSlots.map((slot) =>
             slot.id === selectedSlot.id
-              ? { ...slot, isAvailable: false, teamID: "1" }
+              ? { ...slot, isAvailable: false, teamID: "tba" }
               : slot
           );
           return updatedData;
         }, false);
       }
     }
-  };
+  }
 
   console.log(availableSlotsData);
   console.log(teamData);
