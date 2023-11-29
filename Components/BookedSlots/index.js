@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function BookedSlots({ bookedTimeSlots }) {
-  if (!bookedTimeSlots || bookedTimeSlots.length === 0) {
-    return "this place is already booked!"; // or you can return a message indicating no slots are booked
-  }
+export default function BookedSlots({ availableTimeSlots }) {
+  const bookedTimeSlots = availableTimeSlots.filter(
+    (slot) => !slot.isAvailable
+  );
 
   return (
     <ul>

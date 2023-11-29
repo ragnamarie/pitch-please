@@ -30,6 +30,7 @@ export default function TeamDetails({ onSlotChange, availableTimeSlots }) {
         availableTimeSlots={availableTimeSlots}
         onSlotChange={onSlotChange}
       />
+      <BookedSlots availableTimeSlots={availableTimeSlots}/>
     </>
   );
 }
