@@ -29,7 +29,7 @@ export default function TeamDetails() {
     <>
       <Link href="/club">← Back to List</Link>
       <h1>{teamData.name}</h1>
-      <BookedSlots bookedTimeSlots={availableSlotsData} />
+      {/* <BookedSlots bookedTimeSlots={availableSlotsData} /> */}
       <AvailableSlots availableTimeSlots={availableSlotsData} />
     </>
   );

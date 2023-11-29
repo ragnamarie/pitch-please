@@ -1,7 +1,8 @@
 import { useState } from "react";
+import BookedSlots from "../BookedSlots";
 
 export default function AvailableSlots({ availableTimeSlots }) {
-  const [selectedSlot, setSelectedSlot] = useState(null);
+  const [selectedSlots, setSelectedSlots] = useState([]);
 
   const handleSlotChange = (event) => {
     const selectedValue = event.target.value;
@@ -13,17 +14,17 @@ export default function AvailableSlots({ availableTimeSlots }) {
 
     // Update the available property to false
     if (selectedSlot) {
-      selectedSlot.available = false;
-      setSelectedSlot(selectedSlot);
+      // Check if the slot is not already selected
+      if (!selectedSlots.some((slot) => slot.id === selectedSlot.id)) {
+        setSelectedSlots([...selectedSlots, selectedSlot]);
+      }
     }
-
-    console.log(selectedSlot);
   };
 
   return (
     <div>
       <label>Select an available slot:</label>
-      <select onChange={handleSlotChange} value={selectedSlot?.time}>
+      <select onChange={handleSlotChange} value={selectedSlots[0]?.time}>
         {availableTimeSlots.map((availableTimeSlot) => (
           <option
             key={availableTimeSlot.id}
@@ -34,6 +35,7 @@ export default function AvailableSlots({ availableTimeSlots }) {
           </option>
         ))}
       </select>
+      <BookedSlots bookedTimeSlots={selectedSlots} />
     </div>
   );
 }
