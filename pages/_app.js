@@ -39,7 +39,7 @@ export default function App({ Component, pageProps }) {
         setSelectedSlots([...selectedSlots, selectedSlot]);
         mutate((data) => {
           const updatedData = data.map((slot) =>
-            slot.id === selectedSlot.id ? { ...slot, available: false } : slot
+            slot.id === selectedSlot.id ? { ...slot, isAvailable: false } : slot
           );
           return updatedData;
         }, false);
