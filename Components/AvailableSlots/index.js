@@ -1,29 +1,36 @@
-import Link from "next/link";
-import useSWR from "swr";
+import { useState } from "react";
 
-export default function AvailableSlots() {
-  const { data, isLoading } = useSWR("/api/availableSlots");
+export default function AvailableSlots({ availableTimeSlots }) {
+  const [selectedSlot, setSelectedSlot] = useState(null);
 
-  if (isLoading) {
-    return <h1>kick-off is just around the corner...</h1>;
-  }
+  const handleSlotChange = (event) => {
+    const selectedValue = event.target.value;
+    // Find the selected slot based on the value
+    const selectedSlot = availableTimeSlots.find(
+      (slot) =>
+        `${slot.time} - ${slot.day} - ${slot.location}` === selectedValue
+    );
 
-  if (!data) {
-    return;
-  }
+    // Update the available property to false
+    if (selectedSlot) {
+      selectedSlot.available = false;
+      setSelectedSlot(selectedSlot);
+    }
 
-  console.log(data);
+    console.log(selectedSlot);
+  };
 
   return (
     <div>
       <label>Select an available slot:</label>
-      <select>
-        {data.map((availableSlot) => (
+      <select onChange={handleSlotChange} value={selectedSlot?.time}>
+        {availableTimeSlots.map((availableTimeSlot) => (
           <option
-            key={availableSlot.id}
-            value={`${availableSlot.time} - ${availableSlot.day} - ${availableSlot.location}`}
+            key={availableTimeSlot.id}
+            value={`${availableTimeSlot.time} - ${availableTimeSlot.day} - ${availableTimeSlot.location}`}
           >
-            {availableSlot.time}, {availableSlot.day}, {availableSlot.location}
+            {availableTimeSlot.time}, {availableTimeSlot.day},{" "}
+            {availableTimeSlot.location}
           </option>
         ))}
       </select>

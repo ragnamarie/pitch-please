@@ -7,7 +7,9 @@ export default function BookedSlots({ bookedTimeSlots }) {
     <ul>
       {bookedTimeSlots.map((bookedTimeSlot) => (
         <li key={bookedTimeSlot.id}>
-          <p>{bookedTimeSlot.timeSlotId}</p>
+          <p>{bookedTimeSlot.time}</p>
+          <p>{bookedTimeSlot.day}</p>
+          <p>{bookedTimeSlot.location}</p>
         </li>
       ))}
     </ul>
