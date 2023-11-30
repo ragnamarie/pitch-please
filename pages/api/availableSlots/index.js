@@ -1,6 +1,13 @@
-import { availableSlots } from "@/lib/data";
+import dbConnect from "@/db/dbConnect";
+import AvailableSlot from "@/db/models/AvailableSlot";
 
-export default function handler(request, response) {
-  console.log("Avaliable Slots:", availableSlots);
-  response.status(200).json(availableSlots);
+export default async function handler(request, response) {
+  await dbConnect();
+
+  if (request.method === "GET") {
+    const availableSlots = await AvailableSlot.find();
+
+    console.log(availableSlots);
+    return response.status(200).json(availableSlots);
+  }
 }

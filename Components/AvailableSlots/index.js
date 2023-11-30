@@ -10,6 +10,7 @@ export default function AvailableSlots({
     (slot) => slot.isAvailable
   );
 
+  console.log(teamID);
   return (
     <div>
       <select onChange={(e) => onSlotChange(e, teamID)} defaultValue="">
