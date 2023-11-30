@@ -14,4 +14,12 @@ export default async function handler(request, response) {
 
     response.status(200).json(availableSlot);
   }
+
+  if (request.method === "PUT") {
+    await AvailableSlot.findByIdAndUpdate(id, {
+      $set: request.body,
+    });
+
+    response.status(200).json({ message: "Success!" });
+  }
 }
