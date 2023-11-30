@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }) {
   const {
     data: availableSlotsData,
     isLoading: isLoadingAvailableSlotsData,
-    mutate,
+    mutate: mutateAvailableSlots,
   } = useSWR("/api/availableSlots", fetcher);
 
   const [selectedSlots, setSelectedSlots] = useState([]);
@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }) {
     return;
   }
 
-  const handleSlotChange = (event) => {
+  function handleSlotChange(event, teamID) {
     const selectedValue = event.target.value;
     // Find the selected slot based on the value
     const selectedSlot = availableSlotsData.find(
@@ -36,16 +36,21 @@ export default function App({ Component, pageProps }) {
     if (selectedSlot) {
       // Check if the slot is not already selected
       if (!selectedSlots.some((slot) => slot.id === selectedSlot.id)) {
-        setSelectedSlots([...selectedSlots, selectedSlot]);
-        mutate((data) => {
-          const updatedData = data.map((slot) =>
-            slot.id === selectedSlot.id ? { ...slot, isAvailable: false } : slot
+        setSelectedSlots((prevSelectedSlots) => [
+          ...prevSelectedSlots,
+          selectedSlot,
+        ]);
+        mutateAvailableSlots((prevAvailableSlots) => {
+          const updatedData = prevAvailableSlots.map((slot) =>
+            slot.id === selectedSlot.id
+              ? { ...slot, isAvailable: false, teamID: teamID }
+              : slot
           );
           return updatedData;
         }, false);
       }
     }
-  };
+  }
 
   console.log(availableSlotsData);
 
