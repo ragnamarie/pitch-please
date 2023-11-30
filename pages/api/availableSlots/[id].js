@@ -1,16 +1,17 @@
-import { availableSlots } from "@/lib/data";
+import dbConnect from "@/db/dbConnect";
+import AvailableSlot from "@/db/models/AvailableSlot";
 
-export default function handler(request, response) {
+export default async function handler(request, response) {
+  await dbConnect();
   const { id } = request.query;
 
-  const availableSlot = availableSlots.find(
-    (availableSlot) => availableSlot.id === id
-  );
+  if (request.method === "GET") {
+    const availableSlot = await AvailableSlot.findById(id);
 
-  if (!availableSlot) {
-    return response.status(404).json({ status: "Not Found" });
+    if (!availableSlot) {
+      return response.status(404).json({ status: "Not Found" });
+    }
+
+    response.status(200).json(availableSlot);
   }
-
-  console.log(availableSlot);
-  response.status(200).json(availableSlot);
 }
