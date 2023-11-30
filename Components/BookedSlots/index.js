@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function BookedSlots({ availableTimeSlots }) {
+export default function BookedSlots({ availableTimeSlots, teamID }) {
   const bookedTimeSlots = availableTimeSlots.filter(
-    (slot) => !slot.isAvailable
+    (slot) => !slot.isAvailable && slot.teamID === teamID
   );
 
   return (

@@ -14,19 +14,13 @@ export default function App({ Component, pageProps }) {
     mutate: mutateAvailableSlots,
   } = useSWR("/api/availableSlots", fetcher);
 
-  const {
-    data: teamData,
-    isLoading: isLoadingTeamData,
-    mutate: mutateTeamData,
-  } = useSWR("/api/teams", fetcher);
-
   const [selectedSlots, setSelectedSlots] = useState([]);
 
-  if (isLoadingAvailableSlotsData || isLoadingTeamData) {
+  if (isLoadingAvailableSlotsData) {
     return <h1>kick-off is just around the corner...</h1>;
   }
 
-  if (!availableSlotsData || !teamData) {
+  if (!availableSlotsData) {
     return;
   }
 
@@ -59,7 +53,6 @@ export default function App({ Component, pageProps }) {
   }
 
   console.log(availableSlotsData);
-  console.log(teamData);
 
   return (
     <>
