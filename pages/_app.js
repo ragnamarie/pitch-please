@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }) {
     return;
   }
 
-  function handleSlotChange(event) {
+  function handleSlotChange(event, teamID) {
     const selectedValue = event.target.value;
     // Find the selected slot based on the value
     const selectedSlot = availableSlotsData.find(
@@ -49,7 +49,7 @@ export default function App({ Component, pageProps }) {
         mutateAvailableSlots((prevAvailableSlots) => {
           const updatedData = prevAvailableSlots.map((slot) =>
             slot.id === selectedSlot.id
-              ? { ...slot, isAvailable: false, teamID: "tba" }
+              ? { ...slot, isAvailable: false, teamID: teamID }
               : slot
           );
           return updatedData;

@@ -1,11 +1,19 @@
 import { useState } from "react";
 import BookedSlots from "../BookedSlots";
 
-export default function AvailableSlots({ availableTimeSlots, onSlotChange }) {
+export default function AvailableSlots({
+  availableTimeSlots,
+  onSlotChange,
+  teamID,
+}) {
+  console.log(teamID);
   return (
     <div>
       <label>Select an available slot:</label>
-      <select onChange={onSlotChange} value={availableTimeSlots?.time}>
+      <select
+        onChange={(e) => onSlotChange(e, teamID)}
+        value={availableTimeSlots?.time}
+      >
         {availableTimeSlots.map((availableTimeSlot) => (
           <option
             key={availableTimeSlot.id}
