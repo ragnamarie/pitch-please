@@ -10,16 +10,16 @@ export default async function handler(request, response) {
     return response.status(200).json(teams);
   }
 
-  //   if (request.method === "POST") {
-  //     try {
-  //       const teamData = request.body;
-  //       console.log(teamData);
-  //       await Team.create(teamData);
+  if (request.method === "POST") {
+    try {
+      const teamData = request.body;
+      console.log(teamData);
+      await Team.create(teamData);
 
-  //       response.status(201).json({ status: "Team created" });
-  //     } catch (error) {
-  //       console.log(error);
-  //       response.status(400).json({ error: error.message });
-  //     }
-  //   }
+      response.status(201).json({ status: "Team created" });
+    } catch (error) {
+      console.log(error);
+      response.status(400).json({ error: error.message });
+    }
+  }
 }
