@@ -39,7 +39,6 @@ export default function TeamList() {
 
   return (
     <div>
-      {" "}
       <ul>
         {data.map((team) => (
           <li key={team._id}>
