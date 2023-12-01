@@ -13,8 +13,7 @@ export default function PitchList({ availableTimeSlots }) {
       seenPitches[location] = true;
 
       // Use the same UID logic to generate IDs
-      const id = uid();
-      uniquePitches.push({ id, name: location });
+      uniquePitches.push({ name: location });
     }
   });
 
@@ -24,8 +23,10 @@ export default function PitchList({ availableTimeSlots }) {
     <div>
       <ul>
         {uniquePitches.map((uniquePitch) => (
-          <li key={uniquePitch.id}>
-            <Link href={`/overview/${uniquePitch.id}`}>{uniquePitch.name}</Link>
+          <li key={uniquePitch.name}>
+            <Link href={`/overview/${uniquePitch.name}`}>
+              {uniquePitch.name}
+            </Link>
           </li>
         ))}
       </ul>

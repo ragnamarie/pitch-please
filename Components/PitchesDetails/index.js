@@ -14,16 +14,16 @@ export default function PitchesDetails({ availableTimeSlots }) {
       seenPitches[location] = true;
 
       // Use the same UID logic to generate IDs
-      const id = uid();
-      uniquePitches.push({ id, name: location });
+      uniquePitches.push({ name: location });
     }
   });
 
   const router = useRouter();
-  const { id } = router.query;
+  const { name } = router.query;
+  console.log("id:" + name);
 
   // Find the pitch that matches the ID in the URL
-  const matchedPitch = uniquePitches.find((pitch) => pitch.id === id);
+  const matchedPitch = uniquePitches.find((pitch) => pitch.name === name);
 
   if (!matchedPitch) {
     // Handle the case where the pitch with the specified ID is not found
@@ -35,7 +35,7 @@ export default function PitchesDetails({ availableTimeSlots }) {
     <>
       <Link href="/overview">← Back to List</Link>
       <div>
-        <h1>{id}</h1>
+        <h1>{name}</h1>
         {/* Render other details for the matched pitch if needed */}
       </div>
     </>

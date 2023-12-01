@@ -7,6 +7,7 @@ import AvailableSlots from "../AvailableSlots";
 export default function TeamDetails({ onSlotChange, availableTimeSlots }) {
   const router = useRouter();
   const { id } = router.query;
+  console.log(id);
 
   const { data: teamData, isLoading: isLoadingTeamData } = useSWR(
     `/api/teams/${id}`
