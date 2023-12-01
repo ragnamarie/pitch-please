@@ -12,12 +12,14 @@ export default function PitchList({ availableTimeSlots }) {
     if (!seenPitches[location]) {
       seenPitches[location] = true;
 
-      // Add the location to the uniqueLocations array as an object
-      uniquePitches.push({ id: uid(), name: location });
+      // Use the same UID logic to generate IDs
+      const id = uid();
+      uniquePitches.push({ id, name: location });
     }
   });
 
   console.log("Unique Pitches:", uniquePitches);
+
   return (
     <div>
       <ul>

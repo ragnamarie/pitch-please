@@ -63,6 +63,7 @@ export default function App({ Component, pageProps }) {
             {...pageProps}
             onSlotChange={handleSlotChange}
             availableTimeSlots={availableSlotsData}
+            selectedSlots={selectedSlots}
           />
         </Layout>
       </SWRConfig>

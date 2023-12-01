@@ -1,5 +1,5 @@
 import PitchList from "@/Components/PitchList";
 
-export default function OverviewPage({ availableTimeSlots }) {
+export default function PitchesOverviewPage({ availableTimeSlots }) {
   return <PitchList availableTimeSlots={availableTimeSlots} />;
 }
