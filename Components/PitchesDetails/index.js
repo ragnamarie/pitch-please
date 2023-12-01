@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { uid } from "uid";
+import Calendar from "react-calendar";
 
 export default function PitchesDetails({ availableTimeSlots }) {
   const uniquePitches = [];
@@ -37,6 +38,7 @@ export default function PitchesDetails({ availableTimeSlots }) {
       <div>
         <h1>{name}</h1>
         {/* Render other details for the matched pitch if needed */}
+        <Calendar />
       </div>
     </>
   );
