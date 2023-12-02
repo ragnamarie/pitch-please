@@ -15,7 +15,7 @@ export default async function handler(request, response) {
     response.status(200).json(availableSlot);
   }
 
-  if (request.method === "PUT") {
+  if (request.method === "PATCH") {
     await AvailableSlot.findByIdAndUpdate(id, {
       $set: request.body,
     });
