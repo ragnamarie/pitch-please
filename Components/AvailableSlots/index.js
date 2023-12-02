@@ -24,10 +24,10 @@ export default function AvailableSlots({
         {filteredAvailableTimeSlots.map((availableTimeSlot) => (
           <option
             key={availableTimeSlot.id}
-            value={`${availableTimeSlot.time} - ${availableTimeSlot.day} - ${availableTimeSlot.location}`}
+            value={`${availableTimeSlot.location} - ${availableTimeSlot.day} - ${availableTimeSlot.time}`}
           >
-            {availableTimeSlot.time}, {availableTimeSlot.day},{" "}
-            {availableTimeSlot.location}
+            {availableTimeSlot.location}, {availableTimeSlot.day},{" "}
+            {availableTimeSlot.time}
           </option>
         ))}
       </select>

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function PitchCalendar({ availableTimeSlots, locationName }) {
   const tableData = {
     "04:00 PM": {
@@ -60,8 +62,10 @@ export default function PitchCalendar({ availableTimeSlots, locationName }) {
         {Object.keys(tableData).map((time, index) => (
           <tr key={index}>
             <td>{time}</td>
-            {Object.values(tableData[time]).map((cell, index) => (
-              <td key={index}>{cell}</td>
+            {Object.values(tableData[time]).map((teamName, index) => (
+              <td key={index}>
+                {teamName && <Link href={`/club/${teamName}`}>{teamName}</Link>}
+              </td>
             ))}
           </tr>
         ))}
@@ -69,3 +73,5 @@ export default function PitchCalendar({ availableTimeSlots, locationName }) {
     </table>
   );
 }
+
+// Link not yet working, needs the _id from the database

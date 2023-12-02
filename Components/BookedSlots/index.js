@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function BookedSlots({ availableTimeSlots, teamID }) {
   const bookedTimeSlots = availableTimeSlots.filter(
@@ -9,9 +10,13 @@ export default function BookedSlots({ availableTimeSlots, teamID }) {
     <ul>
       {bookedTimeSlots.map((bookedTimeSlot) => (
         <li key={bookedTimeSlot.id}>
-          <p>{bookedTimeSlot.time}</p>
+          <p>
+            <Link href={`/overview/${bookedTimeSlot.location}`}>
+              {bookedTimeSlot.location}
+            </Link>
+          </p>
           <p>{bookedTimeSlot.day}</p>
-          <p>{bookedTimeSlot.location}</p>
+          <p>{bookedTimeSlot.time}</p>
         </li>
       ))}
     </ul>
