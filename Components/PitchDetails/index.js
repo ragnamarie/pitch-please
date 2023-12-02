@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { uid } from "uid";
-import Calendar from "react-calendar";
+import PitchCalendar from "../PitchCalendar";
 
-export default function PitchesDetails({ availableTimeSlots }) {
+export default function PitchDetails({ availableTimeSlots }) {
   const uniquePitches = [];
   const seenPitches = {}; // To keep track of seen locations
 
@@ -31,15 +30,15 @@ export default function PitchesDetails({ availableTimeSlots }) {
     return <p>Pitch not found</p>;
   }
 
-  // Use the id directly
   return (
-    <>
+    <div>
       <Link href="/overview">← Back to List</Link>
-      <div>
-        <h1>{name}</h1>
-        {/* Render other details for the matched pitch if needed */}
-        <Calendar />
-      </div>
-    </>
+
+      <h1>{name}</h1>
+      <PitchCalendar
+        availableTimeSlots={availableTimeSlots}
+        locationName={name}
+      />
+    </div>
   );
 }
