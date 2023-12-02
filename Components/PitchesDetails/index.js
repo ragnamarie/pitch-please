@@ -35,49 +35,60 @@ export default function PitchesDetails({ availableTimeSlots }) {
     (slot) => slot.location === name && !slot.isAvailable
   );
 
-  const scheduleData = filteredSlots.map((slot) => ({
-    time: slot.time,
-    day: slot.day,
-    teamID: slot.teamID,
+  // const scheduleData = filteredSlots.map((slot) => ({
+  //   time: slot.time,
+  //   day: slot.day,
+  //   teamID: slot.teamID,
+  // }));
+
+  // console.log(filteredSlots);
+
+  const tableData = {
+    "04:00 PM": {
+      monday: "",
+      tuesday: "",
+      wednesday: "",
+      thursday: "",
+      friday: "",
+    },
+    "05:30 PM": {
+      monday: "",
+      tuesday: "",
+      wednesday: "",
+      thursday: "",
+      friday: "",
+    },
+    "07:00 PM": {
+      monday: "",
+      tuesday: "",
+      wednesday: "",
+      thursday: "",
+      friday: "",
+    },
+    "08:30 PM": {
+      monday: "",
+      tuesday: "",
+      wednesday: "",
+      thursday: "",
+      friday: "",
+    },
+  };
+
+  availableTimeSlots
+    .filter((slot) => slot.location === name)
+    .forEach((slot) => {
+      const time = slot.time;
+      const day = slot.day.toLowerCase();
+      const teamID = slot.teamID;
+      if (tableData[time]) {
+        tableData[time][day] = teamID;
+      }
+    });
+
+  const tableRows = Object.entries(tableData).map(([time, rowData]) => ({
+    time,
+    ...rowData,
   }));
-
-  console.log(filteredSlots);
-
-  // const scheduleData = [
-  //   {
-  //     time: "16:00 PM",
-  //     monday: "Team A",
-  //     tuesday: "Team B",
-  //     wednesday: "Team C",
-  //     thursday: "Team D",
-  //     friday: "Team E",
-  //   },
-  //   {
-  //     time: "17:30 PM",
-  //     monday: "Team F",
-  //     tuesday: "Team G",
-  //     wednesday: "Team H",
-  //     thursday: "Team I",
-  //     friday: "Team J",
-  //   },
-  //   {
-  //     time: "19:00 PM",
-  //     monday: "Team K",
-  //     tuesday: "Team L",
-  //     wednesday: "Team M",
-  //     thursday: "Team N",
-  //     friday: "Team O",
-  //   },
-  //   {
-  //     time: "20:30 PM",
-  //     monday: "Team P",
-  //     tuesday: "Team Q",
-  //     wednesday: "Team R",
-  //     thursday: "Team S",
-  //     friday: "Team T",
-  //   },
-  //   // Add more rows as needed
-  // ];
 
   return (
     <div>
@@ -88,22 +99,18 @@ export default function PitchesDetails({ availableTimeSlots }) {
         <thead>
           <tr>
             <th></th>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
+            {Object.keys(tableData["04:00 PM"]).map((day, index) => (
+              <th key={index}>{day.charAt(0).toUpperCase() + day.slice(1)}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {scheduleData.map((row, index) => (
+          {Object.keys(tableData).map((time, index) => (
             <tr key={index}>
-              <td>{row.time}</td>
-              <td>{row.monday}</td>
-              <td>{row.tuesday}</td>
-              <td>{row.wednesday}</td>
-              <td>{row.thursday}</td>
-              <td>{row.friday}</td>
+              <td>{time}</td>
+              {Object.values(tableData[time]).map((cell, index) => (
+                <td key={index}>{cell}</td>
+              ))}
             </tr>
           ))}
         </tbody>
