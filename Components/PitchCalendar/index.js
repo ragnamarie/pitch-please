@@ -35,9 +35,9 @@ export default function PitchCalendar({ availableTimeSlots, locationName }) {
     .forEach((slot) => {
       const time = slot.time;
       const day = slot.day.toLowerCase();
-      const teamID = slot.teamID;
+      const teamName = slot.teamName;
       if (tableData[time]) {
-        tableData[time][day] = teamID;
+        tableData[time][day] = teamName;
       }
     });
 

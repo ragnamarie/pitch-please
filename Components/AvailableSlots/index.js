@@ -5,6 +5,7 @@ export default function AvailableSlots({
   availableTimeSlots,
   onSlotChange,
   teamID,
+  teamName,
 }) {
   const filteredAvailableTimeSlots = availableTimeSlots.filter(
     (slot) => slot.isAvailable
@@ -13,7 +14,10 @@ export default function AvailableSlots({
   console.log(teamID);
   return (
     <div>
-      <select onChange={(e) => onSlotChange(e, teamID)} defaultValue="">
+      <select
+        onChange={(e) => onSlotChange(e, teamID, teamName)}
+        defaultValue=""
+      >
         <option value="" disabled hidden>
           -- Select a slot --
         </option>

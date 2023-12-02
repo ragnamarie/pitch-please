@@ -23,6 +23,7 @@ export default function TeamDetails({ onSlotChange, availableTimeSlots }) {
 
   console.log(teamData);
   console.log(id);
+  console.log(teamData.name);
 
   return (
     <>
@@ -32,6 +33,7 @@ export default function TeamDetails({ onSlotChange, availableTimeSlots }) {
         availableTimeSlots={availableTimeSlots}
         onSlotChange={onSlotChange}
         teamID={id}
+        teamName={teamData.name}
       />
       <BookedSlots availableTimeSlots={availableTimeSlots} teamID={id} />
     </>
