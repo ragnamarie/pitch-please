@@ -26,8 +26,8 @@ export default function AvailableSlots({
             key={availableTimeSlot.id}
             value={`${availableTimeSlot.time} - ${availableTimeSlot.day} - ${availableTimeSlot.location}`}
           >
-            {availableTimeSlot.time}, {availableTimeSlot.day},{" "}
-            {availableTimeSlot.location}
+            {availableTimeSlot.location}, {availableTimeSlot.day},{" "}
+            {availableTimeSlot.time}
           </option>
         ))}
       </select>
