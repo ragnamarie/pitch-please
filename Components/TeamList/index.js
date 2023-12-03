@@ -42,7 +42,7 @@ export default function TeamList() {
       <ul>
         {data.map((team) => (
           <li key={team._id}>
-            <Link href={`/club/${team._id}`}>{team.name}</Link>
+            <Link href={`/club/${team.slug}`}>{team.name}</Link>
           </li>
         ))}
       </ul>

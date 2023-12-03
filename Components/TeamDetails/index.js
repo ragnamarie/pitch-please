@@ -6,11 +6,11 @@ import AvailableSlots from "../AvailableSlots";
 
 export default function TeamDetails({ onSlotChange, availableTimeSlots }) {
   const router = useRouter();
-  const { id } = router.query;
-  console.log(id);
+  const { slug } = router.query;
+  console.log(slug);
 
   const { data: teamData, isLoading: isLoadingTeamData } = useSWR(
-    `/api/teams/${id}`
+    `/api/teams/${slug}`
   );
 
   if (isLoadingTeamData) {
@@ -22,7 +22,7 @@ export default function TeamDetails({ onSlotChange, availableTimeSlots }) {
   }
 
   console.log(teamData);
-  console.log(id);
+
   console.log(teamData.name);
 
   return (
@@ -32,10 +32,13 @@ export default function TeamDetails({ onSlotChange, availableTimeSlots }) {
       <AvailableSlots
         availableTimeSlots={availableTimeSlots}
         onSlotChange={onSlotChange}
-        teamID={id}
+        teamSlug={teamData.slug}
         teamName={teamData.name}
       />
-      <BookedSlots availableTimeSlots={availableTimeSlots} teamID={id} />
+      <BookedSlots
+        availableTimeSlots={availableTimeSlots}
+        teamSlug={teamData.slug}
+      />
     </>
   );
 }

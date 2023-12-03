@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
-export default function BookedSlots({ availableTimeSlots, teamID }) {
+export default function BookedSlots({ availableTimeSlots, teamSlug }) {
   const bookedTimeSlots = availableTimeSlots.filter(
-    (slot) => !slot.isAvailable && slot.teamID === teamID
+    (slot) => !slot.isAvailable && slot.teamSlug === teamSlug
   );
 
   return (
