@@ -14,4 +14,10 @@ export default async function handler(request, response) {
 
     response.status(200).json(team);
   }
+
+  if (request.method === "DELETE") {
+    await Team.deleteOne({ slug: id });
+
+    response.status(200).json({ message: "Success!" });
+  }
 }
