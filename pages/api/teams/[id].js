@@ -6,7 +6,7 @@ export default async function handler(request, response) {
   const { id } = request.query;
 
   if (request.method === "GET") {
-    const team = await Team.findById(id);
+    const team = await Team.findOne({ slug: id });
 
     if (!team) {
       return response.status(404).json({ status: "Not Found" });

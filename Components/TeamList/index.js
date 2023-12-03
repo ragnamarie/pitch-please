@@ -1,6 +1,7 @@
 import Link from "next/link";
 import useSWR from "swr";
 import TeamForm from "../TeamForm";
+import slugify from "slugify";
 
 export default function TeamList() {
   const { data, isLoading, mutate } = useSWR("/api/teams");
@@ -19,8 +20,12 @@ export default function TeamList() {
     event.preventDefault();
 
     const formData = new FormData(event.target);
+    const teamName = formData.get("team");
+
     const teamData = {
-      name: formData.get("team"), // Set the key to 'name'
+      slug: slugify(teamName, { lower: true }), // Generate slug from team name
+      name: teamName,
+      club: "FSV Hansa 07 Kreuzberg",
     };
 
     const response = await fetch(`/api/teams`, {
@@ -42,11 +47,11 @@ export default function TeamList() {
       <ul>
         {data.map((team) => (
           <li key={team._id}>
-            <Link href={`/club/${team._id}`}>{team.name}</Link>
+            <Link href={`/club/${team.slug}`}>{team.name}</Link>
           </li>
         ))}
       </ul>
-      <TeamForm onAddTeam={handleAddTeam} value={data.name} />
+      <TeamForm onAddTeam={handleAddTeam} />
     </div>
   );
 }

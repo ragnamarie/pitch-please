@@ -62,11 +62,19 @@ export default function PitchCalendar({ availableTimeSlots, locationName }) {
         {Object.keys(tableData).map((time, index) => (
           <tr key={index}>
             <td>{time}</td>
-            {Object.values(tableData[time]).map((teamName, index) => (
-              <td key={index}>
-                {teamName && <Link href={`/club/${teamName}`}>{teamName}</Link>}
-              </td>
-            ))}
+            {Object.values(tableData[time]).map((teamName, index) => {
+              const teamSlug = availableTimeSlots.find(
+                (slot) => slot.time === time && slot.teamName === teamName
+              )?.teamSlug;
+
+              return (
+                <td key={index}>
+                  {teamName && (
+                    <Link href={`/club/${teamSlug}`}>{teamName}</Link>
+                  )}
+                </td>
+              );
+            })}
           </tr>
         ))}
       </tbody>

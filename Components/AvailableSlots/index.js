@@ -4,22 +4,21 @@ import BookedSlots from "../BookedSlots";
 export default function AvailableSlots({
   availableTimeSlots,
   onSlotChange,
-  teamID,
+  teamSlug,
   teamName,
 }) {
   const filteredAvailableTimeSlots = availableTimeSlots.filter(
     (slot) => slot.isAvailable
   );
 
-  console.log(teamID);
   return (
     <div>
       <select
-        onChange={(e) => onSlotChange(e, teamID, teamName)}
+        onChange={(e) => onSlotChange(e, teamSlug, teamName)}
         defaultValue=""
       >
         <option value="" disabled hidden>
-          -- Select a slot --
+          SELECT A SLOT
         </option>
         {filteredAvailableTimeSlots.map((availableTimeSlot) => (
           <option
