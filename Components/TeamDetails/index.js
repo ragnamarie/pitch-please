@@ -13,6 +13,17 @@ export default function TeamDetails({ onSlotChange, availableTimeSlots }) {
     `/api/teams/${slug}`
   );
 
+  async function handleDeleteTeam() {
+    const response = await fetch(`/api/teams/${slug}`, { method: "DELETE" });
+
+    if (!response.ok) {
+      console.log(response.status);
+      return;
+    }
+
+    router.push("/club");
+  }
+
   if (isLoadingTeamData) {
     return <h1>kick-off is just around the corner...</h1>;
   }
@@ -29,6 +40,9 @@ export default function TeamDetails({ onSlotChange, availableTimeSlots }) {
     <>
       <Link href="/club">← Back to List</Link>
       <h1>{teamData.name}</h1>
+      <button onClick={handleDeleteTeam}>
+        <span>DELETE TEAM</span>
+      </button>
       <AvailableSlots
         availableTimeSlots={availableTimeSlots}
         onSlotChange={onSlotChange}
