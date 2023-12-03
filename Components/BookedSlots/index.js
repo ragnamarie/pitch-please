@@ -7,18 +7,26 @@ export default function BookedSlots({ availableTimeSlots, teamSlug }) {
   );
 
   return (
-    <ul>
+    <div>
       {bookedTimeSlots.map((bookedTimeSlot) => (
-        <li key={bookedTimeSlot.id}>
-          <p>
+        <span
+          key={bookedTimeSlot.id}
+          style={{
+            margin: "20px",
+            padding: "2px",
+            cursor: "pointer",
+            backgroundColor: "orange",
+            borderRadius: "30px",
+          }}
+        >
+          <span>
             <Link href={`/overview/${bookedTimeSlot.locationSlug}`}>
               {bookedTimeSlot.locationName}
             </Link>
-          </p>
-          <p>{bookedTimeSlot.day}</p>
-          <p>{bookedTimeSlot.time}</p>
-        </li>
+          </span>{" "}
+          <span>{bookedTimeSlot.day}</span> <span>{bookedTimeSlot.time}</span>
+        </span>
       ))}
-    </ul>
+    </div>
   );
 }
