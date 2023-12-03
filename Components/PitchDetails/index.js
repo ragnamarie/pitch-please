@@ -7,23 +7,24 @@ export default function PitchDetails({ availableTimeSlots }) {
   const seenPitches = {}; // To keep track of seen locations
 
   availableTimeSlots.forEach((availableTimeSlot) => {
-    const location = availableTimeSlot.location;
+    const locationName = availableTimeSlot.locationName;
+    const locationSlug = availableTimeSlot.locationSlug;
 
     // Check if the location is not seen before
-    if (!seenPitches[location]) {
-      seenPitches[location] = true;
+    if (!seenPitches[locationName]) {
+      seenPitches[locationName] = true;
 
       // Use the same UID logic to generate IDs
-      uniquePitches.push({ name: location });
+      uniquePitches.push({ name: locationName, slug: locationSlug });
     }
   });
 
   const router = useRouter();
-  const { name } = router.query;
-  console.log("id:" + name);
+  const { slug } = router.query;
+  console.log("id:" + slug);
 
   // Find the pitch that matches the ID in the URL
-  const matchedPitch = uniquePitches.find((pitch) => pitch.name === name);
+  const matchedPitch = uniquePitches.find((pitch) => pitch.slug === slug);
 
   if (!matchedPitch) {
     // Handle the case where the pitch with the specified ID is not found
@@ -34,10 +35,10 @@ export default function PitchDetails({ availableTimeSlots }) {
     <div>
       <Link href="/overview">← Back to List</Link>
 
-      <h1>{name}</h1>
+      <h1>{matchedPitch.name}</h1>
       <PitchCalendar
         availableTimeSlots={availableTimeSlots}
-        locationName={name}
+        locationName={matchedPitch.name}
       />
     </div>
   );
