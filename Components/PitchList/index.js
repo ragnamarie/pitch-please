@@ -6,14 +6,15 @@ export default function PitchList({ availableTimeSlots }) {
   const seenPitches = {}; // To keep track of seen locations
 
   availableTimeSlots.forEach((availableTimeSlot) => {
-    const location = availableTimeSlot.location;
+    const locationName = availableTimeSlot.locationName;
+    const locationSlug = availableTimeSlot.locationSlug;
 
     // Check if the location is not seen before
-    if (!seenPitches[location]) {
-      seenPitches[location] = true;
+    if (!seenPitches[locationName]) {
+      seenPitches[locationName] = true;
 
       // Use the same UID logic to generate IDs
-      uniquePitches.push({ name: location });
+      uniquePitches.push({ name: locationName, slug: locationSlug });
     }
   });
 
@@ -24,7 +25,7 @@ export default function PitchList({ availableTimeSlots }) {
       <ul>
         {uniquePitches.map((uniquePitch) => (
           <li key={uniquePitch.name}>
-            <Link href={`/overview/${uniquePitch.name}`}>
+            <Link href={`/overview/${uniquePitch.slug}`}>
               {uniquePitch.name}
             </Link>
           </li>

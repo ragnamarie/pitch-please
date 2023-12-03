@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }) {
     // Find the selected slot based on the value
     const selectedSlot = availableSlotsData.find(
       (slot) =>
-        `${slot.location} - ${slot.day} - ${slot.time}` === selectedValue
+        `${slot.locationName} - ${slot.day} - ${slot.time}` === selectedValue
     );
 
     // Update the available property to false

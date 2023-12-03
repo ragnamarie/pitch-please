@@ -11,8 +11,8 @@ export default function BookedSlots({ availableTimeSlots, teamSlug }) {
       {bookedTimeSlots.map((bookedTimeSlot) => (
         <li key={bookedTimeSlot.id}>
           <p>
-            <Link href={`/overview/${bookedTimeSlot.location}`}>
-              {bookedTimeSlot.location}
+            <Link href={`/overview/${bookedTimeSlot.locationSlug}`}>
+              {bookedTimeSlot.locationName}
             </Link>
           </p>
           <p>{bookedTimeSlot.day}</p>

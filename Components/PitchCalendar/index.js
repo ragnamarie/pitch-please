@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 export default function PitchCalendar({ availableTimeSlots, locationName }) {
+  console.log("loco" + locationName);
   const tableData = {
     "04:00 PM": {
       monday: "",
@@ -33,7 +34,7 @@ export default function PitchCalendar({ availableTimeSlots, locationName }) {
   };
 
   availableTimeSlots
-    .filter((slot) => slot.location === locationName)
+    .filter((slot) => slot.locationName === locationName)
     .forEach((slot) => {
       const time = slot.time;
       const day = slot.day.toLowerCase();
@@ -81,5 +82,3 @@ export default function PitchCalendar({ availableTimeSlots, locationName }) {
     </table>
   );
 }
-
-// Link not yet working, needs the _id from the database
