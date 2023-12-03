@@ -13,23 +13,32 @@ export default function AvailableSlots({
 
   return (
     <div>
-      <select
-        onChange={(e) => onSlotChange(e, teamSlug, teamName)}
-        defaultValue=""
-      >
-        <option value="" disabled hidden>
-          SELECT A SLOT
-        </option>
-        {filteredAvailableTimeSlots.map((availableTimeSlot) => (
-          <option
-            key={availableTimeSlot.id}
-            value={`${availableTimeSlot.locationName} - ${availableTimeSlot.day} - ${availableTimeSlot.time}`}
-          >
-            {availableTimeSlot.locationName}, {availableTimeSlot.day},{" "}
-            {availableTimeSlot.time}
-          </option>
-        ))}
-      </select>
+      {filteredAvailableTimeSlots.map((availableTimeSlot) => (
+        <span
+          key={availableTimeSlot.id}
+          style={{
+            margin: "20px",
+            padding: "2px",
+            cursor: "pointer",
+            backgroundColor: "green",
+            borderRadius: "30px",
+          }}
+          onClick={() =>
+            onSlotChange(
+              {
+                target: {
+                  value: `${availableTimeSlot.locationName} - ${availableTimeSlot.day} - ${availableTimeSlot.time}`,
+                },
+              },
+              teamSlug,
+              teamName
+            )
+          }
+        >
+          {availableTimeSlot.locationName}, {availableTimeSlot.day},{" "}
+          {availableTimeSlot.time}
+        </span>
+      ))}
     </div>
   );
 }
