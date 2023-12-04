@@ -1,7 +1,11 @@
 import React from "react";
 import Link from "next/link";
 
-export default function BookedSlots({ availableTimeSlots, teamSlug }) {
+export default function BookedSlots({
+  availableTimeSlots,
+  teamSlug,
+  onSlotRelease,
+}) {
   const bookedTimeSlots = availableTimeSlots.filter(
     (slot) => !slot.isAvailable && slot.teamSlug === teamSlug
   );
@@ -25,6 +29,23 @@ export default function BookedSlots({ availableTimeSlots, teamSlug }) {
             </Link>
           </span>{" "}
           <span>{bookedTimeSlot.day}</span> <span>{bookedTimeSlot.time}</span>
+          <button
+            style={{
+              borderRadius: "50%",
+              backgroundColor: "orange" /* Optional background color */,
+              border: "none",
+              cursor: "pointer",
+            }}
+            onClick={() =>
+              onSlotRelease({
+                target: {
+                  value: `${bookedTimeSlot.locationName} - ${bookedTimeSlot.day} - ${bookedTimeSlot.time}`,
+                },
+              })
+            }
+          >
+            |X|
+          </button>
         </span>
       ))}
     </div>
