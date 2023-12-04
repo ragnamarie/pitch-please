@@ -27,7 +27,7 @@ ul {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; 
-  gap: 30px;
+  gap: 15px;
   padding: 0;
 }
 

@@ -11,43 +11,45 @@ export default function BookedSlots({
   );
 
   return (
-    <div>
+    <ul>
       {bookedTimeSlots.map((bookedTimeSlot) => (
-        <span
-          key={bookedTimeSlot.id}
-          style={{
-            margin: "20px",
-            padding: "2px",
-            cursor: "pointer",
-            backgroundColor: "orange",
-            borderRadius: "30px",
-          }}
-        >
-          <span>
-            <Link href={`/overview/${bookedTimeSlot.locationSlug}`}>
-              {bookedTimeSlot.locationName}
-            </Link>
-          </span>{" "}
-          <span>{bookedTimeSlot.day}</span> <span>{bookedTimeSlot.time}</span>
-          <button
+        <li key={bookedTimeSlot.id}>
+          <span
             style={{
-              borderRadius: "50%",
-              backgroundColor: "orange" /* Optional background color */,
-              border: "none",
+              padding: "4px",
               cursor: "pointer",
+              backgroundColor: "orange",
+              borderRadius: "30px",
             }}
-            onClick={() =>
-              onSlotRelease({
-                target: {
-                  value: `${bookedTimeSlot.locationName} - ${bookedTimeSlot.day} - ${bookedTimeSlot.time}`,
-                },
-              })
-            }
           >
-            |X|
-          </button>
-        </span>
+            <span>
+              <Link href={`/overview/${bookedTimeSlot.locationSlug}`}>
+                <b>{bookedTimeSlot.locationName}</b>
+              </Link>
+            </span>{" "}
+            <span>
+              {bookedTimeSlot.day}, {bookedTimeSlot.time}
+            </span>
+            <button
+              style={{
+                borderRadius: "50%",
+                backgroundColor: "orange",
+                border: "none",
+                cursor: "pointer",
+              }}
+              onClick={() =>
+                onSlotRelease({
+                  target: {
+                    value: `${bookedTimeSlot.locationName} - ${bookedTimeSlot.day} - ${bookedTimeSlot.time}`,
+                  },
+                })
+              }
+            >
+              ✖
+            </button>
+          </span>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
