@@ -43,7 +43,7 @@ export default function TeamDetails({
   return (
     <>
       <Link href="/club">← Back to List</Link>
-      <h1>{teamData.name}</h1>
+      <h2>{teamData.name}</h2>
       <button onClick={handleDeleteTeam}>
         <span>DELETE TEAM</span>
       </button>
