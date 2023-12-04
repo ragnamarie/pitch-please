@@ -3,17 +3,17 @@ import Navigation from "../Navigation";
 
 export default function Layout({ children, availableTimeSlots }) {
   return (
-    <div>
+    <body>
       <header>
-        <h1>pitch, please!</h1>
+        <h1>PITCH, PLEASE!</h1>
         <Navigation availableTimeSlots={availableTimeSlots} />
       </header>
       <main>{children}</main>
       <footer>
         <p>
-          <small>pitch, please!&copy;</small>
+          <small>PITCH, PLEASE!&copy;</small>
         </p>
       </footer>
-    </div>
+    </body>
   );
 }

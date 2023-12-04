@@ -13,9 +13,15 @@ export default function Navigation({ availableTimeSlots }) {
       <li>
         <Link href="/settings">settings</Link>
       </li>
-      <li>
+      <span
+        style={{
+          padding: "5px",
+          backgroundColor: "green",
+          borderRadius: "30px",
+        }}
+      >
         <Counter availableTimeSlots={availableTimeSlots} />
-      </li>
+      </span>
     </ul>
   );
 }
