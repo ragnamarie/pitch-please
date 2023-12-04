@@ -7,7 +7,7 @@ export default async function handler(request, response) {
   if (request.method === "GET") {
     const availableSlots = await AvailableSlot.find();
 
-    console.log(availableSlots);
+    // console.log(availableSlots);
     return response.status(200).json(availableSlots);
   }
 }

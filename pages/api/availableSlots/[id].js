@@ -6,7 +6,7 @@ export default async function handler(request, response) {
   const { id } = request.query;
 
   if (request.method === "GET") {
-    const availableSlot = await AvailableSlot.findById(id);
+    const availableSlot = await AvailableSlot.findOne({ id: id });
 
     if (!availableSlot) {
       return response.status(404).json({ status: "Not Found" });
@@ -16,6 +16,7 @@ export default async function handler(request, response) {
   }
 
   if (request.method === "PATCH") {
+    console.log("req" + request.query);
     await AvailableSlot.findByIdAndUpdate(id, {
       $set: request.body,
     });
