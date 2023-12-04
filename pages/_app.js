@@ -94,7 +94,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <SWRConfig value={{ fetcher }}>
-        <Layout>
+        <Layout availableTimeSlots={availableSlotsData}>
           <GlobalStyle />
           <Component
             {...pageProps}

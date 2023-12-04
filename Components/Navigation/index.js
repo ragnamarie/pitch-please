@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Counter from "../Counter";
 
-export default function Navigation() {
+export default function Navigation({ availableTimeSlots }) {
   return (
     <ul>
       <li>
@@ -11,6 +12,9 @@ export default function Navigation() {
       </li>
       <li>
         <Link href="/settings">settings</Link>
+      </li>
+      <li>
+        <Counter availableTimeSlots={availableTimeSlots} />
       </li>
     </ul>
   );
