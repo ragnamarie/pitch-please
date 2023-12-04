@@ -55,8 +55,17 @@ export default function TeamDetails({
     <>
       <Link href="/club">← Back to List</Link>
       <h2>{teamData.name}</h2>
-      <button onClick={handleDeleteTeam}>
-        <span>DELETE TEAM</span>
+      <button
+        style={{
+          fontFamily: "Futura",
+          padding: "8px",
+          cursor: "pointer",
+          borderRadius: "30px",
+          border: "none",
+        }}
+        onClick={handleDeleteTeam}
+      >
+        DELETE TEAM
       </button>
       <div className="slots">
         <AvailableSlots
