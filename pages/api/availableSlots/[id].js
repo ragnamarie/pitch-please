@@ -16,7 +16,6 @@ export default async function handler(request, response) {
   }
 
   if (request.method === "PATCH") {
-    console.log("req" + request.query);
     await AvailableSlot.findByIdAndUpdate(id, {
       $set: request.body,
     });

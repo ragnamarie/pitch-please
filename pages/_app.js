@@ -2,7 +2,6 @@ import GlobalStyle from "../styles";
 import Layout from "@/Components/Layout";
 import { SWRConfig } from "swr";
 import { useState } from "react";
-import { useRouter } from "next/router";
 import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
@@ -83,6 +82,7 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  // OLD SLOTCHANGE WITHOUT DATABASE UPDATE
   // function handleSlotChange(event, teamSlug, teamName) {
   //   const selectedValue = event.target.value;
   //   // Find the selected slot based on the value
@@ -116,8 +116,10 @@ export default function App({ Component, pageProps }) {
   //   }
   // }
 
-  function handleSlotRelease(event) {
+  async function handleSlotRelease(event) {
+    console.log("handleSlotRelease function is called");
     const selectedValue = event.target.value;
+
     // Find the selected slot based on the value
     const selectedSlot = selectedSlots.find(
       (slot) =>
@@ -126,29 +128,88 @@ export default function App({ Component, pageProps }) {
 
     // Check if the selected slot exists and has been selected
     if (selectedSlot) {
-      // Update the available property to true and remove teamName and teamSlug
-      mutateAvailableSlots((prevAvailableSlots) => {
-        const updatedData = prevAvailableSlots.map((slot) =>
-          slot.id === selectedSlot.id
-            ? {
-                ...slot,
-                isAvailable: true,
-                teamName: null,
-                teamSlug: null,
-              }
-            : slot
+      try {
+        // Make a PATCH request to update the slot in the database
+        const response = await fetch(
+          `/api/availableSlots/${selectedSlot._id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              isAvailable: true,
+              teamName: null,
+              teamSlug: null,
+            }),
+          }
         );
-        return updatedData;
-      }, false);
 
-      // Remove the selected slot from the selectedSlots array
-      setSelectedSlots((prevSelectedSlots) =>
-        prevSelectedSlots.filter((slot) => slot.id !== selectedSlot.id)
-      );
+        if (!response.ok) {
+          // Handle the error based on your application's requirements
+          console.error("Failed to update slot in the database");
+          return;
+        }
+
+        mutateAvailableSlots((prevAvailableSlots) => {
+          const updatedData = prevAvailableSlots.map((slot) =>
+            slot.id === selectedSlot.id
+              ? {
+                  ...slot,
+                  isAvailable: true,
+                  teamName: null,
+                  teamSlug: null,
+                }
+              : slot
+          );
+          return updatedData;
+        }, false);
+
+        // Remove the selected slot from the selectedSlots array
+        setSelectedSlots((prevSelectedSlots) =>
+          prevSelectedSlots.filter((slot) => slot.id !== selectedSlot.id)
+        );
+      } catch (error) {
+        console.error("An error occurred while updating the slot:", error);
+        // Handle the error based on your application's requirements
+      }
     }
   }
 
-  // console.log(availableSlotsData);
+  // OLD SLOTCHANGE WITHOUT DATABASE UPDATE
+  // function handleSlotRelease(event) {
+  //   const selectedValue = event.target.value;
+  //   // Find the selected slot based on the value
+  //   const selectedSlot = selectedSlots.find(
+  //     (slot) =>
+  //       `${slot.locationName} - ${slot.day} - ${slot.time}` === selectedValue
+  //   );
+
+  //   // Check if the selected slot exists and has been selected
+  //   if (selectedSlot) {
+  //     // Update the available property to true and remove teamName and teamSlug
+  //     mutateAvailableSlots((prevAvailableSlots) => {
+  //       const updatedData = prevAvailableSlots.map((slot) =>
+  //         slot.id === selectedSlot.id
+  //           ? {
+  //               ...slot,
+  //               isAvailable: true,
+  //               teamName: null,
+  //               teamSlug: null,
+  //             }
+  //           : slot
+  //       );
+  //       return updatedData;
+  //     }, false);
+
+  //     // Remove the selected slot from the selectedSlots array
+  //     setSelectedSlots((prevSelectedSlots) =>
+  //       prevSelectedSlots.filter((slot) => slot.id !== selectedSlot.id)
+  //     );
+  //   }
+  // }
+
+  console.log(availableSlotsData);
 
   return (
     <>
