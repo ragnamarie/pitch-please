@@ -44,6 +44,7 @@ export default function TeamList() {
 
   return (
     <div>
+      <h2>FSV Hansa 07 Kreuzberg</h2>
       <ul>
         {data.map((team) => (
           <li key={team._id}>
@@ -55,3 +56,5 @@ export default function TeamList() {
     </div>
   );
 }
+
+// instead of Hansa it needs to display User, needs to be dynamic
