@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import BookedSlots from "../BookedSlots";
 import AvailableSlots from "../AvailableSlots";
-import { useState } from "react";
 
 export default function TeamDetails({
   onSlotChange,
@@ -17,8 +16,6 @@ export default function TeamDetails({
   const { data: teamData, isLoading: isLoadingTeamData } = useSWR(
     `/api/teams/${slug}`
   );
-
-  const [isDeletionAllowed, setIsDeletionAllowed] = useState(true);
 
   async function handleDeleteTeam() {
     const isTeamUsed = availableTimeSlots.some(

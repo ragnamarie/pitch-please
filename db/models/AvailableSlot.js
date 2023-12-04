@@ -7,6 +7,8 @@ const availableSlotSchema = new Schema({
   day: { type: String, required: true },
   location: { type: String, required: true },
   isAvailable: { type: Boolean, required: true },
+  teamName: { type: String },
+  teamSlug: { type: String },
 });
 
 const AvailableSlot =
