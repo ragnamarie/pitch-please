@@ -57,6 +57,38 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  function handleSlotRelease(event) {
+    const selectedValue = event.target.value;
+    // Find the selected slot based on the value
+    const selectedSlot = selectedSlots.find(
+      (slot) =>
+        `${slot.locationName} - ${slot.day} - ${slot.time}` === selectedValue
+    );
+
+    // Check if the selected slot exists and has been selected
+    if (selectedSlot) {
+      // Update the available property to true and remove teamName and teamSlug
+      mutateAvailableSlots((prevAvailableSlots) => {
+        const updatedData = prevAvailableSlots.map((slot) =>
+          slot.id === selectedSlot.id
+            ? {
+                ...slot,
+                isAvailable: true,
+                teamName: null,
+                teamSlug: null,
+              }
+            : slot
+        );
+        return updatedData;
+      }, false);
+
+      // Remove the selected slot from the selectedSlots array
+      setSelectedSlots((prevSelectedSlots) =>
+        prevSelectedSlots.filter((slot) => slot.id !== selectedSlot.id)
+      );
+    }
+  }
+
   console.log(availableSlotsData);
 
   return (
@@ -67,6 +99,7 @@ export default function App({ Component, pageProps }) {
           <Component
             {...pageProps}
             onSlotChange={handleSlotChange}
+            onSlotRelease={handleSlotRelease}
             availableTimeSlots={availableSlotsData}
             selectedSlots={selectedSlots}
           />

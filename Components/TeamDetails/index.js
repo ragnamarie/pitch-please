@@ -4,7 +4,11 @@ import useSWR from "swr";
 import BookedSlots from "../BookedSlots";
 import AvailableSlots from "../AvailableSlots";
 
-export default function TeamDetails({ onSlotChange, availableTimeSlots }) {
+export default function TeamDetails({
+  onSlotChange,
+  onSlotRelease,
+  availableTimeSlots,
+}) {
   const router = useRouter();
   const { slug } = router.query;
   console.log(slug);
@@ -51,6 +55,7 @@ export default function TeamDetails({ onSlotChange, availableTimeSlots }) {
       />
       <BookedSlots
         availableTimeSlots={availableTimeSlots}
+        onSlotRelease={onSlotRelease}
         teamSlug={teamData.slug}
       />
     </>
