@@ -34,4 +34,10 @@ ul {
 li {
   list-style-type: none;
 }
+
+.slots {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+}
 `;

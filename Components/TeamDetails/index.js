@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import BookedSlots from "../BookedSlots";
 import AvailableSlots from "../AvailableSlots";
+import { useState } from "react";
 
 export default function TeamDetails({
   onSlotChange,
@@ -17,7 +18,17 @@ export default function TeamDetails({
     `/api/teams/${slug}`
   );
 
+  const [isDeletionAllowed, setIsDeletionAllowed] = useState(true);
+
   async function handleDeleteTeam() {
+    const isTeamUsed = availableTimeSlots.some(
+      (slot) => slot.teamSlug === slug
+    );
+
+    if (isTeamUsed) {
+      // If deletion is not allowed, do nothing
+      return;
+    }
     const response = await fetch(`/api/teams/${slug}`, { method: "DELETE" });
 
     if (!response.ok) {
@@ -47,17 +58,19 @@ export default function TeamDetails({
       <button onClick={handleDeleteTeam}>
         <span>DELETE TEAM</span>
       </button>
-      <AvailableSlots
-        availableTimeSlots={availableTimeSlots}
-        onSlotChange={onSlotChange}
-        teamSlug={teamData.slug}
-        teamName={teamData.name}
-      />
-      <BookedSlots
-        availableTimeSlots={availableTimeSlots}
-        onSlotRelease={onSlotRelease}
-        teamSlug={teamData.slug}
-      />
+      <div className="slots">
+        <AvailableSlots
+          availableTimeSlots={availableTimeSlots}
+          onSlotChange={onSlotChange}
+          teamSlug={teamData.slug}
+          teamName={teamData.name}
+        />
+        <BookedSlots
+          availableTimeSlots={availableTimeSlots}
+          onSlotRelease={onSlotRelease}
+          teamSlug={teamData.slug}
+        />
+      </div>
     </>
   );
 }
