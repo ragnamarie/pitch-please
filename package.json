@@ -16,6 +16,7 @@
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.2",
     "next": "13.4.8",
+    "next-auth": "^4.24.5",
     "react": "18.2.0",
     "react-calendar": "^4.6.1",
     "react-dom": "18.2.0",
