@@ -4,8 +4,13 @@ export default function HomePage() {
   return (
     <div>
       <h1>
-        please, log in{" "}
-        <span onClick={() => signIn()}>
+        log in{" "}
+        <span
+          style={{
+            cursor: "pointer",
+          }}
+          onClick={() => signIn()}
+        >
           <u>here</u>.
         </span>
       </h1>
