@@ -1,4 +1,5 @@
 import { useSession, signOut, getSession } from "next-auth/react";
+import Link from "next/link";
 
 const Account = () => {
   const { data: session, status } = useSession();
@@ -19,6 +20,15 @@ const Account = () => {
         >
           SIGN OUT
         </button>
+        <span
+          style={{
+            padding: "5px",
+            backgroundColor: "green",
+            borderRadius: "30px",
+          }}
+        >
+          <Link href="/editprofile">EDIT PROFILE</Link>
+        </span>
       </div>
     );
   } else {
