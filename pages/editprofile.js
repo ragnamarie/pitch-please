@@ -1,9 +1,10 @@
 import Link from "next/link";
+import ProfileForm from "@/Components/ProfileForm";
 
 export default function EditProfilePage() {
   return (
     <div>
-      <h1>gonna add a form here</h1>
+      <ProfileForm/>
     </div>
   );
 }

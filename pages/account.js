@@ -7,7 +7,7 @@ const Account = () => {
   if (status === "authenticated") {
     return (
       <div>
-        <p>welcome, {session.user.name}!</p>
+        <p>you are logged in with {session.user.email}</p>
         <button
           style={{
             fontFamily: "Futura",
@@ -45,7 +45,7 @@ export const getServerSideProps = async (context) => {
 
   if (!session) {
     return {
-      redirect: { destination: "/login" },
+      redirect: { destination: "/" },
     };
   }
 
