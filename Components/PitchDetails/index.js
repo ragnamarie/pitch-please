@@ -33,7 +33,7 @@ export default function PitchDetails({ availableTimeSlots }) {
 
   return (
     <div>
-      <Link href="/overview">← Back to List</Link>
+      <Link href="/pitches">← Back to List</Link>
 
       <h1>{matchedPitch.name}</h1>
       <PitchCalendar

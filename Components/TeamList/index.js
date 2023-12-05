@@ -2,8 +2,9 @@ import Link from "next/link";
 import useSWR from "swr";
 import TeamForm from "../TeamForm";
 import slugify from "slugify";
+import TeamCounter from "../TeamCounter";
 
-export default function TeamList() {
+export default function TeamList({ availableTimeSlots }) {
   const { data, isLoading, mutate } = useSWR("/api/teams");
 
   if (isLoading) {
@@ -48,7 +49,13 @@ export default function TeamList() {
       <ul>
         {data.map((team) => (
           <li key={team._id}>
-            <Link href={`/club/${team.slug}`}>{team.name}</Link>
+            <span>
+              <Link href={`/club/${team.slug}`}>{team.name}</Link>
+              <TeamCounter
+                name={team.name}
+                availableTimeSlots={availableTimeSlots}
+              />
+            </span>
           </li>
         ))}
       </ul>
