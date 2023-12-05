@@ -25,7 +25,7 @@ export default function PitchList({ availableTimeSlots }) {
       <ul>
         {uniquePitches.map((uniquePitch) => (
           <li key={uniquePitch.name}>
-            <Link href={`/overview/${uniquePitch.slug}`}>
+            <Link href={`/pitches/${uniquePitch.slug}`}>
               {uniquePitch.name}
             </Link>
           </li>

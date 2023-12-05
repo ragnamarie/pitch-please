@@ -164,7 +164,6 @@ export default function App({ Component, pageProps, session }) {
             onSlotChange={handleSlotChange}
             onSlotRelease={handleSlotRelease}
             availableTimeSlots={availableSlotsData}
-            selectedSlots={selectedSlots}
           />
         </Layout>
       </SWRConfig>

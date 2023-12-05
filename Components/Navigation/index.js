@@ -8,7 +8,7 @@ export default function Navigation({ availableTimeSlots }) {
         <Link href="/club">my club</Link>
       </li>
       <li>
-        <Link href="/overview">overview</Link>
+        <Link href="/pitches">pitches</Link>
       </li>
       <li>
         <Link href="/account">account</Link>

@@ -23,7 +23,7 @@ export default function BookedSlots({
             }}
           >
             <span>
-              <Link href={`/overview/${bookedTimeSlot.locationSlug}`}>
+              <Link href={`/pitches/${bookedTimeSlot.locationSlug}`}>
                 <b>{bookedTimeSlot.locationName}</b>
               </Link>
             </span>{" "}
