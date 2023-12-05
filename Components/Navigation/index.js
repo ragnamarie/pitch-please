@@ -11,7 +11,7 @@ export default function Navigation({ availableTimeSlots }) {
         <Link href="/overview">overview</Link>
       </li>
       <li>
-        <Link href="/settings">settings</Link>
+        <Link href="/account">account</Link>
       </li>
       <span
         style={{
