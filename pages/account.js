@@ -6,14 +6,25 @@ const Account = () => {
   if (status === "authenticated") {
     return (
       <div>
-        <p>Welcome {session.user.name}</p>
-        <button onClick={() => signOut()}>SIGN OUT</button>
+        <p>welcome, {session.user.name}!</p>
+        <button
+          style={{
+            fontFamily: "Futura",
+            padding: "8px",
+            cursor: "pointer",
+            borderRadius: "30px",
+            border: "none",
+          }}
+          onClick={() => signOut()}
+        >
+          SIGN OUT
+        </button>
       </div>
     );
   } else {
     return (
       <div>
-        <p>You are not signed in</p>
+        <p>you are not signed in.</p>
       </div>
     );
   }
