@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import BookedSlots from "../BookedSlots";
 import AvailableSlots from "../AvailableSlots";
+import { useSession } from "next-auth/react";
 
 export default function TeamDetails({
   onSlotChange,
@@ -13,8 +14,9 @@ export default function TeamDetails({
   const { slug } = router.query;
   console.log(slug);
 
+  const { data: session } = useSession();
   const { data: teamData, isLoading: isLoadingTeamData } = useSWR(
-    `/api/teams/${slug}`
+    session ? `/api/teams/${slug}` : null
   );
 
   async function handleDeleteTeam() {

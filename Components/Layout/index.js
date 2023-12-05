@@ -1,12 +1,15 @@
 import React from "react";
 import Navigation from "../Navigation";
+import { useSession } from "next-auth/react";
 
 export default function Layout({ children, availableTimeSlots }) {
+  const { data: session } = useSession();
+
   return (
     <div>
       <header>
         <h1>PITCH, PLEASE!</h1>
-        <Navigation availableTimeSlots={availableTimeSlots} />
+        {session && <Navigation availableTimeSlots={availableTimeSlots} />}
       </header>
       <main>{children}</main>
       <footer>

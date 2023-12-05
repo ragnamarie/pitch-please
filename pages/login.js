@@ -1,12 +1,13 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 
+//keeping this for safety reasons for now
 const Login = () => {
   const { data: session } = useSession();
   console.log(session);
   if (session) {
     return (
       <div>
-        <p>welcome, {session.user.name}!</p>
+        <p>you are logged in with {session.user.email}</p>
         <button
           style={{
             fontFamily: "Futura",

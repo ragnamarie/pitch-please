@@ -15,7 +15,6 @@ export default NextAuth({
           name: profile.name,
           userName: profile.email.split("@")[0], // Using the email as a username (modify as needed)
           googleId: profile.sub, // Assuming Google provides a unique ID
-          image: profile.picture, // URL to the user's profile picture
           admin: false,
         };
       },

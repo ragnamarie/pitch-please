@@ -1,4 +1,5 @@
 import { useSession, signOut, getSession } from "next-auth/react";
+import Link from "next/link";
 
 const Account = () => {
   const { data: session, status } = useSession();
@@ -6,7 +7,7 @@ const Account = () => {
   if (status === "authenticated") {
     return (
       <div>
-        <p>welcome, {session.user.name}!</p>
+        <p>you are logged in with {session.user.email}</p>
         <button
           style={{
             fontFamily: "Futura",
@@ -19,6 +20,15 @@ const Account = () => {
         >
           SIGN OUT
         </button>
+        <span
+          style={{
+            padding: "5px",
+            backgroundColor: "green",
+            borderRadius: "30px",
+          }}
+        >
+          <Link href="/editprofile">EDIT PROFILE</Link>
+        </span>
       </div>
     );
   } else {
@@ -35,7 +45,7 @@ export const getServerSideProps = async (context) => {
 
   if (!session) {
     return {
-      redirect: { destination: "/login" },
+      redirect: { destination: "/" },
     };
   }
 
