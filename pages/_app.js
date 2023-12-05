@@ -4,10 +4,11 @@ import { SWRConfig } from "swr";
 import { useState } from "react";
 import useSWR from "swr";
 import useLocalStorageState from "use-local-storage-state";
+import { SessionProvider } from "next-auth/react";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps, session }) {
   const {
     data: availableSlotsData,
     isLoading: isLoadingAvailableSlotsData,
@@ -35,6 +36,8 @@ export default function App({ Component, pageProps }) {
       (slot) =>
         `${slot.locationName} - ${slot.day} - ${slot.time}` === selectedValue
     );
+
+    console.log("Selected Slot:", selectedSlot);
 
     if (selectedSlot) {
       if (!selectedSlots.some((slot) => slot.id === selectedSlot.id)) {
@@ -97,6 +100,7 @@ export default function App({ Component, pageProps }) {
       (slot) =>
         `${slot.locationName} - ${slot.day} - ${slot.time}` === selectedValue
     );
+    console.log("Selected Slot2:", selectedSlot);
 
     // Check if the selected slot exists and has been selected
     if (selectedSlot) {
@@ -151,7 +155,7 @@ export default function App({ Component, pageProps }) {
   console.log(availableSlotsData);
 
   return (
-    <>
+    <SessionProvider session={session}>
       <SWRConfig value={{ fetcher }}>
         <Layout availableTimeSlots={availableSlotsData}>
           <GlobalStyle />
@@ -164,7 +168,7 @@ export default function App({ Component, pageProps }) {
           />
         </Layout>
       </SWRConfig>
-    </>
+    </SessionProvider>
   );
 }
 
