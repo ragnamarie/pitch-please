@@ -1,13 +1,23 @@
 import { useSession, signOut, getSession } from "next-auth/react";
 import Link from "next/link";
+import useSWR from "swr";
+import Profile from "@/Components/Profile";
 
 const Account = () => {
   const { data: session, status } = useSession();
 
+  const { data, isLoading, error } = useSWR(
+    session ? `api/users/${session.user?.googleId}` : null
+  );
+
+  console.log(data);
+
+  if (isLoading) return <p>Loading...</p>;
+
   if (status === "authenticated") {
     return (
       <div>
-        <p>you are logged in with {session.user.email}</p>
+        <p>hey there, {session.user.name}!</p>
         <button
           style={{
             fontFamily: "Futura",
@@ -20,6 +30,7 @@ const Account = () => {
         >
           SIGN OUT
         </button>
+        <Profile user={data} />
         <span
           style={{
             padding: "5px",
@@ -52,3 +63,41 @@ export const getServerSideProps = async (context) => {
   return { props: { session } };
 };
 export default Account;
+
+// keeping this for now just to be safe
+
+//   if (status === "authenticated") {
+//     return (
+//       <div>
+//         <p>you are logged in with {session.user.email}</p>
+//         <button
+//           style={{
+//             fontFamily: "Futura",
+//             padding: "8px",
+//             cursor: "pointer",
+//             borderRadius: "30px",
+//             border: "none",
+//           }}
+//           onClick={() => signOut()}
+//         >
+//           SIGN OUT
+//         </button>
+//         <span
+//           style={{
+//             padding: "5px",
+//             backgroundColor: "green",
+//             borderRadius: "30px",
+//           }}
+//         >
+//           <Link href="/editprofile">EDIT PROFILE</Link>
+//         </span>
+//       </div>
+//     );
+//   } else {
+//     return (
+//       <div>
+//         <p>you are not signed in.</p>
+//       </div>
+//     );
+//   }
+// };
