@@ -18,11 +18,6 @@ export default function EditProfilePage() {
     const club = formData.get("club");
     const manager = formData.get("manager");
 
-    // const userData = {
-    //   clubName: club,
-    //   managerName: manager,
-    // };
-
     const response = await fetch(`/api/users/${data[0].googleId}`, {
       method: "PATCH",
       headers: {
