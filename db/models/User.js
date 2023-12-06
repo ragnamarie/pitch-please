@@ -6,6 +6,8 @@ const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   image: { type: String },
   create_at: { type: Date, default: Date.now },
+  clubName: { type: String },
+  managerName: { type: String },
 });
 
 const User = models.User || model("User", userSchema);

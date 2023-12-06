@@ -29,7 +29,7 @@ export default function TeamList({ availableTimeSlots }) {
     const teamData = {
       slug: slugify(teamName, { lower: true }), // Generate slug from team name
       name: teamName,
-      club: "FSV Hansa 07 Kreuzberg",
+      club: "FSV Hansa 07 Kreuzberg", // needs to become dynamic at some point
     };
 
     const response = await fetch(`/api/teams`, {

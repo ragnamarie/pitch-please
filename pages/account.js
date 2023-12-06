@@ -3,7 +3,7 @@ import Link from "next/link";
 import useSWR from "swr";
 import Profile from "@/Components/Profile";
 
-const Account = () => {
+export default function Account() {
   const { data: session, status } = useSession();
 
   const { data, isLoading, error } = useSWR(
@@ -46,10 +46,22 @@ const Account = () => {
     return (
       <div>
         <p>you are not signed in.</p>
+        <button
+          style={{
+            fontFamily: "Futura",
+            padding: "8px",
+            cursor: "pointer",
+            borderRadius: "30px",
+            border: "none",
+          }}
+          onClick={() => signIn()}
+        >
+          SIGN IN
+        </button>
       </div>
     );
   }
-};
+}
 
 export const getServerSideProps = async (context) => {
   const session = await getSession(context);
@@ -62,7 +74,6 @@ export const getServerSideProps = async (context) => {
 
   return { props: { session } };
 };
-export default Account;
 
 // keeping this for now just to be safe
 

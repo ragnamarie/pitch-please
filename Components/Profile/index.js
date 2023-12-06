@@ -7,15 +7,14 @@ export default function Profile({ user }) {
   }
 
   // Destructure the first (and presumably only) object in the array
-  const { userName, email, name } = user[0];
+  const { userName, email, managerName, clubName } = user[0];
 
   return (
     <div>
-      <p>club:</p>
-      <p>name: {name}</p>
+      <p>club: {clubName}</p>
+      <p>manager: {managerName}</p>
       <p>username: {userName}</p>
       <p>email: {email}</p>
-      <p>phone number:</p>
     </div>
   );
 }
