@@ -76,7 +76,7 @@ export default function PitchCalendar({ availableTimeSlots, locationName }) {
                 <td key={index}>
                   {teamName && (
                     <Link href={`/club/${teamSlug}`}>
-                      {teamName}({clubName})
+                      {teamName} ({clubName})
                     </Link>
                   )}
                 </td>

@@ -3,11 +3,12 @@ import Link from "next/link";
 
 export default function BookedSlots({
   availableTimeSlots,
+  clubNameSlots,
   teamSlug,
   clubName,
   onSlotRelease,
 }) {
-  const bookedTimeSlots = availableTimeSlots.filter(
+  const bookedTimeSlots = clubNameSlots.filter(
     (slot) => !slot.isAvailable && slot.teamSlug === teamSlug
   );
 
