@@ -26,6 +26,9 @@ export default function TeamList({ availableTimeSlots }) {
 
   console.log(data);
 
+  const userClub = "FSV Hansa 07 Kreuzberg"; // hard coded for now
+  const userClubData = data.filter((team) => team.club === userClub);
+
   async function handleAddTeam(event) {
     event.preventDefault();
 
@@ -49,14 +52,13 @@ export default function TeamList({ availableTimeSlots }) {
     if (response.ok) {
       mutate();
     }
-    console.log(teamData);
   }
 
   return (
     <div>
-      <h2>FSV Hansa 07 Kreuzberg</h2>
+      <h2>{userClub}</h2>
       <StyledList>
-        {data.map((team) => (
+        {userClubData.map((team) => (
           <li key={team._id} style={{ position: "relative" }}>
             <div>
               <StyledPolygon
