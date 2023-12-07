@@ -17,7 +17,7 @@ export default function Account() {
   if (status === "authenticated") {
     return (
       <div>
-        <p>hey there, {session.user.name}!</p>
+        <p>hey there, {session.user.clubName}!</p>
         <button
           style={{
             fontFamily: "Futura",
