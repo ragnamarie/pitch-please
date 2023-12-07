@@ -14,20 +14,30 @@ import {
 export default function TeamList({ availableTimeSlots }) {
   const { data: session } = useSession();
 
-  const { data, isLoading, mutate } = useSWR(session ? "/api/teams" : null);
+  const {
+    data: teamData,
+    isLoading: teamLoading,
+    mutate: mutateTeams,
+  } = useSWR(session ? "/api/teams" : null);
+  const {
+    data: userData,
+    isLoading: userLoading,
+    error: userError,
+  } = useSWR(session ? `/api/users/${session.user?.googleId}` : null);
 
-  if (isLoading) {
+  if (teamLoading || userLoading) {
     return <h1>kick-off is just around the corner...</h1>;
   }
 
-  if (!data) {
-    return;
+  if (!teamData || userError) {
+    return <p>Error loading data...</p>;
   }
 
-  console.log(data);
+  console.log(teamData);
+  console.log(userData);
 
-  const userClub = "FSV Hansa 07 Kreuzberg"; // hard coded for now
-  const userClubData = data.filter((team) => team.club === userClub);
+  const userClub = session.user.clubName; // hard coded for now
+  const userClubData = teamData.filter((team) => team.club === userClub);
 
   async function handleAddTeam(event) {
     event.preventDefault();
@@ -38,7 +48,7 @@ export default function TeamList({ availableTimeSlots }) {
     const teamData = {
       slug: slugify(teamName, { lower: true }), // Generate slug from team name
       name: teamName,
-      club: "FSV Hansa 07 Kreuzberg", // needs to become dynamic at some point
+      club: userClub, // needs to become dynamic at some point
     };
 
     const response = await fetch(`/api/teams`, {
@@ -50,7 +60,7 @@ export default function TeamList({ availableTimeSlots }) {
     });
 
     if (response.ok) {
-      mutate();
+      mutateTeams();
     }
   }
 
