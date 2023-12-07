@@ -1,5 +1,5 @@
-import useSWR from "swr";
 import Link from "next/link";
+import useSWR from "swr";
 import TeamForm from "../TeamForm";
 import slugify from "slugify";
 import TeamCounter from "../TeamCounter";
@@ -9,6 +9,7 @@ import {
   StyledPolygon,
   StyledCounter,
   StyledTeamName,
+  StyledPlus,
 } from "./StyledTeamList.js";
 
 export default function TeamList({ availableTimeSlots }) {
@@ -36,9 +37,7 @@ export default function TeamList({ availableTimeSlots }) {
   console.log(teamData);
   console.log(userData);
 
-  const { clubName } = userData[0];
-
-  const userClub = clubName;
+  const userClub = session.user.clubName; // hard coded for now
   const userClubData = teamData.filter((team) => team.club === userClub);
 
   async function handleAddTeam(event) {
@@ -98,10 +97,30 @@ export default function TeamList({ availableTimeSlots }) {
             </div>
           </li>
         ))}
+        <li>
+          <div style={{ position: "relative", width: "102px", height: "88px" }}>
+            <StyledPolygon
+              xmlns="http://www.w3.org/2000/svg"
+              width="102"
+              height="88"
+              viewBox="0 0 51 44"
+              fill="none"
+            >
+              <path
+                id="Vector"
+                d="M12.7491 44H38.2509L51 22.0018L38.2509 0H12.7491L0 22.0018L12.7491 44Z"
+                fill="black"
+              />
+            </StyledPolygon>
+            <StyledPlus>+</StyledPlus>
+          </div>
+        </li>
       </StyledList>
-      <TeamForm onAddTeam={handleAddTeam} />
     </div>
   );
 }
 
 // instead of Hansa it needs to display User, needs to be dynamic
+{
+  /* <TeamForm onAddTeam={handleAddTeam} /> */
+}

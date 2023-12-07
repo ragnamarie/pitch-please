@@ -39,3 +39,17 @@ export const StyledTeamName = styled.div`
   top: -20px;
   left: 50px;
 `;
+
+export const StyledPlus = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 44%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 70px;
+  font-family: Futura;
+  font-weight: 700;
+  word-wrap: break-word;
+`;
+
+
