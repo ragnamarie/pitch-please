@@ -47,8 +47,8 @@ export default function TeamDetails({
   }
 
   console.log(teamData);
-
   console.log(teamData.name);
+  console.log(teamData.club);
 
   return (
     <>
@@ -72,11 +72,13 @@ export default function TeamDetails({
           onSlotChange={onSlotChange}
           teamSlug={teamData.slug}
           teamName={teamData.name}
+          clubName={teamData.club}
         />
         <BookedSlots
           availableTimeSlots={availableTimeSlots}
           onSlotRelease={onSlotRelease}
           teamSlug={teamData.slug}
+          clubName={teamData.club}
         />
       </div>
     </>

@@ -4,6 +4,7 @@ import Link from "next/link";
 export default function BookedSlots({
   availableTimeSlots,
   teamSlug,
+  clubName,
   onSlotRelease,
 }) {
   const bookedTimeSlots = availableTimeSlots.filter(
@@ -38,11 +39,14 @@ export default function BookedSlots({
                 cursor: "pointer",
               }}
               onClick={() =>
-                onSlotRelease({
-                  target: {
-                    value: `${bookedTimeSlot.locationName} - ${bookedTimeSlot.day} - ${bookedTimeSlot.time}`,
+                onSlotRelease(
+                  {
+                    target: {
+                      value: `${bookedTimeSlot.locationName} - ${bookedTimeSlot.day} - ${bookedTimeSlot.time}`,
+                    },
                   },
-                })
+                  clubName
+                )
               }
             >
               ✖

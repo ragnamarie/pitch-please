@@ -9,6 +9,7 @@ const availableSlotSchema = new Schema({
   isAvailable: { type: Boolean, required: true },
   teamName: { type: String },
   teamSlug: { type: String },
+  clubName: { type: String },
 });
 
 const AvailableSlot =
