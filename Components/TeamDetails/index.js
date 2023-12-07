@@ -15,8 +15,33 @@ export default function TeamDetails({
   console.log(slug);
 
   const { data: session } = useSession();
+
   const { data: teamData, isLoading: isLoadingTeamData } = useSWR(
     session ? `/api/teams/${slug}` : null
+  );
+  const {
+    data: userData,
+    isLoading: isLoadingUserData,
+    error: userError,
+  } = useSWR(session ? `/api/users/${session.user?.googleId}` : null);
+
+  if (isLoadingTeamData || isLoadingUserData) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!teamData || userError) {
+    return <p>Error loading data...</p>;
+  }
+
+  console.log(teamData);
+  console.log(userData);
+
+  const { clubName } = userData[0];
+  const userClub = clubName;
+
+  // Use the filter method to create a new array with objects that match the condition
+  const clubNameSlots = availableTimeSlots.filter(
+    (slot) => slot.clubName === userClub
   );
 
   async function handleDeleteTeam() {
@@ -69,6 +94,7 @@ export default function TeamDetails({
       <div className="slots">
         <AvailableSlots
           availableTimeSlots={availableTimeSlots}
+          clubNameSlots={clubNameSlots}
           onSlotChange={onSlotChange}
           teamSlug={teamData.slug}
           teamName={teamData.name}
@@ -79,6 +105,7 @@ export default function TeamDetails({
           onSlotRelease={onSlotRelease}
           teamSlug={teamData.slug}
           clubName={teamData.club}
+          clubNameSlots={clubNameSlots}
         />
       </div>
     </>

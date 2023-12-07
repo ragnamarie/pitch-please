@@ -1,5 +1,5 @@
-import Link from "next/link";
 import useSWR from "swr";
+import Link from "next/link";
 import TeamForm from "../TeamForm";
 import slugify from "slugify";
 import TeamCounter from "../TeamCounter";
@@ -36,7 +36,9 @@ export default function TeamList({ availableTimeSlots }) {
   console.log(teamData);
   console.log(userData);
 
-  const userClub = session.user.clubName; // hard coded for now
+  const { clubName } = userData[0];
+
+  const userClub = clubName;
   const userClubData = teamData.filter((team) => team.club === userClub);
 
   async function handleAddTeam(event) {

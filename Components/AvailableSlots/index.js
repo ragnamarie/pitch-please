@@ -3,19 +3,21 @@ import BookedSlots from "../BookedSlots";
 
 export default function AvailableSlots({
   availableTimeSlots,
+  clubNameSlots,
   onSlotChange,
   teamSlug,
   teamName,
   clubName,
 }) {
-  const filteredAvailableTimeSlots = availableTimeSlots.filter(
+  const filteredAvailableTimeSlots = clubNameSlots.filter(
     (slot) => slot.isAvailable
   );
 
+  console.log(clubNameSlots);
   return (
     <ul>
-      {filteredAvailableTimeSlots.map((availableTimeSlot) => (
-        <li key={availableTimeSlot.id}>
+      {filteredAvailableTimeSlots.map((clubNameSlot) => (
+        <li key={clubNameSlot.id}>
           <span
             style={{
               padding: "4px",
@@ -28,7 +30,7 @@ export default function AvailableSlots({
               onSlotChange(
                 {
                   target: {
-                    value: `${availableTimeSlot.locationName} - ${availableTimeSlot.day} - ${availableTimeSlot.time}`,
+                    value: `${clubNameSlot.locationName} - ${clubNameSlot.day} - ${clubNameSlot.time}`,
                   },
                 },
                 teamSlug,
@@ -37,8 +39,8 @@ export default function AvailableSlots({
               )
             }
           >
-            <b>{availableTimeSlot.locationName}</b> {availableTimeSlot.day},{" "}
-            {availableTimeSlot.time}
+            <b>{clubNameSlot.locationName}</b> {clubNameSlot.day},{" "}
+            {clubNameSlot.time}
           </span>
         </li>
       ))}

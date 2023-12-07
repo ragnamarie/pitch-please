@@ -71,20 +71,7 @@ export default function App({ Component, pageProps, session }) {
           }
 
           // If the update was successful, you can trigger a refetch or update the local state as needed
-          mutateAvailableSlots((prevAvailableSlots) => {
-            const updatedData = prevAvailableSlots.map((slot) =>
-              slot.id === selectedSlot.id
-                ? {
-                    ...slot,
-                    isAvailable: false,
-                    teamName: teamName,
-                    teamSlug: teamSlug,
-                    clubName: clubName,
-                  }
-                : slot
-            );
-            return updatedData;
-          }, false);
+          mutateAvailableSlots();
         } catch (error) {
           console.error("An error occurred while updating the slot:", error);
           // Handle the error based on your application's requirements
@@ -130,20 +117,7 @@ export default function App({ Component, pageProps, session }) {
           return;
         }
 
-        mutateAvailableSlots((prevAvailableSlots) => {
-          const updatedData = prevAvailableSlots.map((slot) =>
-            slot.id === selectedSlot.id
-              ? {
-                  ...slot,
-                  isAvailable: true,
-                  teamName: null,
-                  teamSlug: null,
-                  clubName: null,
-                }
-              : slot
-          );
-          return updatedData;
-        }, false);
+        mutateAvailableSlots();
 
         // Remove the selected slot from the selectedSlots array
         setSelectedSlots((prevSelectedSlots) =>
@@ -241,3 +215,35 @@ export default function App({ Component, pageProps, session }) {
 //     );
 //   }
 // }
+
+// OLD MUTATE FOR SLOTRELEASE
+// mutateAvailableSlots((prevAvailableSlots) => {
+//   const updatedData = prevAvailableSlots.map((slot) =>
+//     slot.id === selectedSlot.id
+//       ? {
+//           ...slot,
+//           isAvailable: true,
+//           teamName: null,
+//           teamSlug: null,
+//           clubName: null,
+//         }
+//       : slot
+//   );
+//   return updatedData;
+// }, false);
+
+// OLD MUTATE FOR SLOTCHANGE
+// mutateAvailableSlots((prevAvailableSlots) => {
+//   const updatedData = prevAvailableSlots.map((slot) =>
+//     slot.id === selectedSlot.id
+//       ? {
+//           ...slot,
+//           isAvailable: false,
+//           teamName: teamName,
+//           teamSlug: teamSlug,
+//           clubName: clubName,
+//         }
+//       : slot
+//   );
+//   return updatedData;
+// }, false);
