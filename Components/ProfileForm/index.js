@@ -1,3 +1,9 @@
+import {
+  StyledEditButton,
+  StyledForm,
+  StyledTextBox,
+} from "./StyledProfileForm";
+
 export default function ProfileForm({ user, onEditProfile }) {
   // Check if user array exists and has at least one item
   if (!user || user.length === 0) {
@@ -8,17 +14,20 @@ export default function ProfileForm({ user, onEditProfile }) {
   const { club, manager } = user[0];
 
   return (
-    <form onSubmit={onEditProfile}>
-      <label htmlFor="club-input">Club</label>
-      <input type="text" id="club-input" name="club" defaultValue={club} />
-      <label htmlFor="manager-input">Manager</label>
-      <input
+    <StyledForm onSubmit={onEditProfile}>
+      <StyledTextBox
+        type="text"
+        id="club-input"
+        name="club"
+        defaultValue="Club"
+      />
+      <StyledTextBox
         type="text"
         id="manager-input"
         name="manager"
-        defaultValue={manager}
+        defaultValue="Manager"
       />
-      <button type="submit">UPDATE</button>
-    </form>
+      <StyledEditButton type="submit">UPDATE</StyledEditButton>
+    </StyledForm>
   );
 }

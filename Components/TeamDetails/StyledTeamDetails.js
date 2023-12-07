@@ -12,4 +12,5 @@ export const StyledDeleteButton = styled.button`
   border-radius: 30px;
   width: 150px;
   padding: 10px;
+  cursor: pointer;
 `;
