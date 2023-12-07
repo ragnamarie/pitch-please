@@ -6,6 +6,7 @@ export default function AvailableSlots({
   onSlotChange,
   teamSlug,
   teamName,
+  clubName,
 }) {
   const filteredAvailableTimeSlots = availableTimeSlots.filter(
     (slot) => slot.isAvailable
@@ -31,7 +32,8 @@ export default function AvailableSlots({
                   },
                 },
                 teamSlug,
-                teamName
+                teamName,
+                clubName
               )
             }
           >

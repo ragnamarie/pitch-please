@@ -9,8 +9,6 @@ export default function EditProfilePage() {
     session ? `api/users/${session.user?.googleId}` : null
   );
 
-  //   console.log(data[0].googleId);
-
   async function handleEditProfile(event) {
     event.preventDefault();
 

@@ -39,6 +39,7 @@ export default function PitchCalendar({ availableTimeSlots, locationName }) {
       const time = slot.time;
       const day = slot.day.toLowerCase();
       const teamName = slot.teamName;
+      const clubName = slot.clubName;
       if (tableData[time]) {
         tableData[time][day] = teamName;
       }
@@ -67,11 +68,16 @@ export default function PitchCalendar({ availableTimeSlots, locationName }) {
               const teamSlug = availableTimeSlots.find(
                 (slot) => slot.time === time && slot.teamName === teamName
               )?.teamSlug;
+              const clubName = availableTimeSlots.find(
+                (slot) => slot.time === time && slot.teamName === teamName
+              )?.clubName;
 
               return (
                 <td key={index}>
                   {teamName && (
-                    <Link href={`/club/${teamSlug}`}>{teamName}</Link>
+                    <Link href={`/club/${teamSlug}`}>
+                      {teamName}({clubName})
+                    </Link>
                   )}
                 </td>
               );

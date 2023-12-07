@@ -30,7 +30,7 @@ export default function App({ Component, pageProps, session }) {
     return;
   }
 
-  async function handleSlotChange(event, teamSlug, teamName) {
+  async function handleSlotChange(event, teamSlug, teamName, clubName) {
     const selectedValue = event.target.value;
     const selectedSlot = availableSlotsData.find(
       (slot) =>
@@ -59,6 +59,7 @@ export default function App({ Component, pageProps, session }) {
                 isAvailable: false,
                 teamName: teamName,
                 teamSlug: teamSlug,
+                clubName: clubName,
               }),
             }
           );
@@ -78,6 +79,7 @@ export default function App({ Component, pageProps, session }) {
                     isAvailable: false,
                     teamName: teamName,
                     teamSlug: teamSlug,
+                    clubName: clubName,
                   }
                 : slot
             );
@@ -91,7 +93,7 @@ export default function App({ Component, pageProps, session }) {
     }
   }
 
-  async function handleSlotRelease(event) {
+  async function handleSlotRelease(event, clubName) {
     console.log("handleSlotRelease function is called");
     const selectedValue = event.target.value;
 
@@ -117,6 +119,7 @@ export default function App({ Component, pageProps, session }) {
               isAvailable: true,
               teamName: null,
               teamSlug: null,
+              clubName: clubName,
             }),
           }
         );
@@ -135,6 +138,7 @@ export default function App({ Component, pageProps, session }) {
                   isAvailable: true,
                   teamName: null,
                   teamSlug: null,
+                  clubName: null,
                 }
               : slot
           );

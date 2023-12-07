@@ -16,6 +16,7 @@ export default NextAuth({
           userName: profile.email.split("@")[0], // Using the email as a username (modify as needed)
           googleId: profile.sub, // Assuming Google provides a unique ID
           admin: false,
+          clubName: undefined,
         };
       },
     }),
@@ -30,6 +31,7 @@ export default NextAuth({
         session.user.googleId = user.googleId;
         session.user.email = user.email;
         session.user.admin = user.admin;
+        session.user.clubName = user.clubName;
       }
       return session;
     },
