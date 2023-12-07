@@ -1,6 +1,7 @@
-import useSWR from "swr";
 import Link from "next/link";
+import useSWR from "swr";
 import TeamForm from "../TeamForm";
+import { useState } from "react";
 import slugify from "slugify";
 import TeamCounter from "../TeamCounter";
 import { useSession } from "next-auth/react";
@@ -9,9 +10,11 @@ import {
   StyledPolygon,
   StyledCounter,
   StyledTeamName,
+  StyledPlusButton,
 } from "./StyledTeamList.js";
 
 export default function TeamList({ availableTimeSlots }) {
+  const [isButtonClicked, setButtonClicked] = useState(false);
   const { data: session } = useSession();
 
   const {
@@ -36,12 +39,16 @@ export default function TeamList({ availableTimeSlots }) {
   console.log(teamData);
   console.log(userData);
 
-  const { clubName } = userData[0];
-
-  const userClub = clubName;
+  const userClub = session.user.clubName;
   const userClubData = teamData.filter((team) => team.club === userClub);
 
+  function handleButtonClick() {
+    // Toggle the value of isButtonClicked
+    setButtonClicked((prevValue) => !prevValue);
+  }
+
   async function handleAddTeam(event) {
+    console.log("Button clicked");
     event.preventDefault();
 
     const formData = new FormData(event.target);
@@ -98,10 +105,33 @@ export default function TeamList({ availableTimeSlots }) {
             </div>
           </li>
         ))}
+        <li>
+          <div style={{ position: "relative", width: "102px", height: "88px" }}>
+            <StyledPolygon
+              xmlns="http://www.w3.org/2000/svg"
+              width="102"
+              height="88"
+              viewBox="0 0 51 44"
+              fill="none"
+            >
+              <path
+                id="Vector"
+                d="M12.7491 44H38.2509L51 22.0018L38.2509 0H12.7491L0 22.0018L12.7491 44Z"
+                fill="black"
+              />
+            </StyledPolygon>
+            <StyledPlusButton onClick={handleButtonClick}>+</StyledPlusButton>
+          </div>
+        </li>
+        <li>
+          {isButtonClicked && (
+            <TeamForm
+              onAddTeam={handleAddTeam}
+              onButtonClick={handleButtonClick}
+            />
+          )}
+        </li>
       </StyledList>
-      <TeamForm onAddTeam={handleAddTeam} />
     </div>
   );
 }
-
-// instead of Hansa it needs to display User, needs to be dynamic
