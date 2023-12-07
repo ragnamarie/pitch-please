@@ -123,14 +123,7 @@ export default function TeamList({ availableTimeSlots }) {
             <StyledPlusButton onClick={handleButtonClick}>+</StyledPlusButton>
           </div>
         </li>
-        <li>
-          {isButtonClicked && (
-            <TeamForm
-              onAddTeam={handleAddTeam}
-              onButtonClick={handleButtonClick}
-            />
-          )}
-        </li>
+        <li>{isButtonClicked && <TeamForm onAddTeam={handleAddTeam} />}</li>
       </StyledList>
     </div>
   );
