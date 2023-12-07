@@ -4,6 +4,12 @@ import TeamForm from "../TeamForm";
 import slugify from "slugify";
 import TeamCounter from "../TeamCounter";
 import { useSession } from "next-auth/react";
+import {
+  StyledList,
+  StyledPolygon,
+  StyledCounter,
+  StyledTeamName,
+} from "./StyledTeamList.js";
 
 export default function TeamList({ availableTimeSlots }) {
   const { data: session } = useSession();
@@ -49,22 +55,11 @@ export default function TeamList({ availableTimeSlots }) {
   return (
     <div>
       <h2>FSV Hansa 07 Kreuzberg</h2>
-      <ul
-        style={{
-          display: "flex",
-          gap: "70px",
-          listStyle: "none",
-          padding: 0,
-          margin: 0,
-        }}
-      >
+      <StyledList>
         {data.map((team) => (
           <li key={team._id} style={{ position: "relative" }}>
             <div>
-              <svg
-                style={{
-                  width: "88px",
-                }}
+              <StyledPolygon
                 xmlns="http://www.w3.org/2000/svg"
                 width="102"
                 height="88"
@@ -76,49 +71,20 @@ export default function TeamList({ availableTimeSlots }) {
                   d="M12.7491 44H38.2509L51 22.0018L38.2509 0H12.7491L0 22.0018L12.7491 44Z"
                   fill="#008000"
                 />
-              </svg>
-              {/* Center the TeamCounter within the SVG */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  color: "white",
-                  fontSize: "45px",
-                  fontFamily: "Futura",
-                  fontWeight: "700",
-                  wordWrap: "break-word",
-                }}
-              >
+              </StyledPolygon>
+              <StyledCounter>
                 <TeamCounter
                   name={team.name}
                   availableTimeSlots={availableTimeSlots}
                 />
-              </div>
-              <div
-                style={{
-                  width: "143px",
-                  height: "23.64px",
-                  position: "absolute",
-                  transform: "rotate(60deg)",
-                  transformOrigin: "20 0",
-                  textAlign: "center",
-                  color: "black",
-                  fontSize: "18px",
-                  fontFamily: "Futura",
-                  fontWeight: "700",
-                  wordWrap: "break-word",
-                  top: "20px",
-                  left: "40px",
-                }}
-              >
+              </StyledCounter>
+              <StyledTeamName>
                 <Link href={`/club/${team.slug}`}>{team.name}</Link>
-              </div>
+              </StyledTeamName>
             </div>
           </li>
         ))}
-      </ul>
+      </StyledList>
       <TeamForm onAddTeam={handleAddTeam} />
     </div>
   );

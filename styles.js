@@ -41,4 +41,12 @@ li {
   flex-wrap: wrap; 
 }
 
+.teamList {
+  display: "flex";
+  gap: "70px";
+  list-style: "none";
+  padding: 0;
+  margin: 0;
+}
+
 `;
