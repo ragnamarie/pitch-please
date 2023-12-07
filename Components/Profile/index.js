@@ -1,3 +1,5 @@
+import { StyledList } from "./StyledProfile";
+
 export default function Profile({ user }) {
   console.log(user);
 
@@ -10,11 +12,11 @@ export default function Profile({ user }) {
   const { userName, email, managerName, clubName } = user[0];
 
   return (
-    <div>
-      <p>club: {clubName}</p>
-      <p>manager: {managerName}</p>
-      <p>username: {userName}</p>
-      <p>email: {email}</p>
-    </div>
+    <StyledList>
+      <li>club: {clubName}</li>
+      <li>manager: {managerName}</li>
+      <li>username: {userName}</li>
+      <li>email: {email}</li>
+    </StyledList>
   );
 }

@@ -8,7 +8,6 @@ export default createGlobalStyle`
   }
 
   body {
-    margin: 2;
     font-family: 'Futura', sans-serif;
     font-weight: 500;
   }
@@ -35,15 +34,17 @@ li {
   list-style-type: none;
 }
 
-.slots {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; 
-}
 
 a {
   text-decoration: none;
   color: green;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+}
+
+
 
 `;

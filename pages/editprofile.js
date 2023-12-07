@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import ProfileForm from "@/Components/ProfileForm";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function EditProfilePage() {
   const { data: session, status } = useSession();
@@ -40,6 +41,7 @@ export default function EditProfilePage() {
   if (status === "authenticated") {
     return (
       <div>
+        <Link href="/account">← Back to Account</Link>
         <ProfileForm user={data} onEditProfile={handleEditProfile} />
       </div>
     );

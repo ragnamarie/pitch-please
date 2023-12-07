@@ -4,6 +4,7 @@ import useSWR from "swr";
 import BookedSlots from "../BookedSlots";
 import AvailableSlots from "../AvailableSlots";
 import { useSession } from "next-auth/react";
+import { StyledDeleteButton } from "./StyledTeamDetails";
 
 export default function TeamDetails({
   onSlotChange,
@@ -79,19 +80,11 @@ export default function TeamDetails({
     <>
       <Link href="/club">← Back to List</Link>
       <h2>{teamData.name}</h2>
-      <button
-        style={{
-          fontFamily: "Futura",
-          padding: "8px",
-          cursor: "pointer",
-          borderRadius: "30px",
-          border: "none",
-        }}
-        onClick={handleDeleteTeam}
-      >
-        DELETE TEAM
-      </button>
-      <div className="slots">
+
+      <div>
+        <StyledDeleteButton onClick={handleDeleteTeam}>
+          DELETE TEAM
+        </StyledDeleteButton>
         <AvailableSlots
           availableTimeSlots={availableTimeSlots}
           clubNameSlots={clubNameSlots}

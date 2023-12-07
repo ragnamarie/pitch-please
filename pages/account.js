@@ -2,6 +2,11 @@ import { useSession, signOut, getSession } from "next-auth/react";
 import Link from "next/link";
 import useSWR from "swr";
 import Profile from "@/Components/Profile";
+import {
+  ButtonWrapper,
+  SignInAndOutButton,
+  EditProfileButton,
+} from "./styledPages";
 
 export default function Account() {
   const { data: session, status } = useSession();
@@ -17,47 +22,33 @@ export default function Account() {
   if (status === "authenticated") {
     return (
       <div>
-        <p>hey there, {session.user.clubName}!</p>
-        <button
-          style={{
-            fontFamily: "Futura",
-            padding: "8px",
-            cursor: "pointer",
-            borderRadius: "30px",
-            border: "none",
-          }}
-          onClick={() => signOut()}
-        >
-          SIGN OUT
-        </button>
+        <ButtonWrapper>
+          <h2>hey there, {session.user.clubName}!</h2>
+          <SignInAndOutButton onClick={() => signOut()}>
+            SIGN OUT
+          </SignInAndOutButton>
+          <EditProfileButton>
+            <Link
+              style={{
+                color: "white",
+              }}
+              href="/editprofile"
+            >
+              EDIT PROFILE
+            </Link>
+          </EditProfileButton>
+        </ButtonWrapper>
+
         <Profile user={data} />
-        <span
-          style={{
-            padding: "5px",
-            backgroundColor: "green",
-            borderRadius: "30px",
-          }}
-        >
-          <Link href="/editprofile">EDIT PROFILE</Link>
-        </span>
       </div>
     );
   } else {
     return (
       <div>
         <p>you are not signed in.</p>
-        <button
-          style={{
-            fontFamily: "Futura",
-            padding: "8px",
-            cursor: "pointer",
-            borderRadius: "30px",
-            border: "none",
-          }}
-          onClick={() => signIn()}
-        >
+        <SignInAndOutButton onClick={() => signIn()}>
           SIGN IN
-        </button>
+        </SignInAndOutButton>
       </div>
     );
   }
