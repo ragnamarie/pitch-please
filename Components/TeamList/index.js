@@ -1,6 +1,7 @@
 import Link from "next/link";
 import useSWR from "swr";
 import TeamForm from "../TeamForm";
+import { useState } from "react";
 import slugify from "slugify";
 import TeamCounter from "../TeamCounter";
 import { useSession } from "next-auth/react";
@@ -9,10 +10,11 @@ import {
   StyledPolygon,
   StyledCounter,
   StyledTeamName,
-  StyledPlus,
+  StyledPlusButton,
 } from "./StyledTeamList.js";
 
 export default function TeamList({ availableTimeSlots }) {
+  const [isButtonClicked, setButtonClicked] = useState(false);
   const { data: session } = useSession();
 
   const {
@@ -37,10 +39,16 @@ export default function TeamList({ availableTimeSlots }) {
   console.log(teamData);
   console.log(userData);
 
-  const userClub = session.user.clubName; // hard coded for now
+  const userClub = session.user.clubName;
   const userClubData = teamData.filter((team) => team.club === userClub);
 
+  function handleButtonClick() {
+    // Toggle the value of isButtonClicked
+    setButtonClicked((prevValue) => !prevValue);
+  }
+
   async function handleAddTeam(event) {
+    console.log("Button clicked");
     event.preventDefault();
 
     const formData = new FormData(event.target);
@@ -112,15 +120,18 @@ export default function TeamList({ availableTimeSlots }) {
                 fill="black"
               />
             </StyledPolygon>
-            <StyledPlus>+</StyledPlus>
+            <StyledPlusButton onClick={handleButtonClick}>+</StyledPlusButton>
           </div>
+        </li>
+        <li>
+          {isButtonClicked && (
+            <TeamForm
+              onAddTeam={handleAddTeam}
+              onButtonClick={handleButtonClick}
+            />
+          )}
         </li>
       </StyledList>
     </div>
   );
-}
-
-// instead of Hansa it needs to display User, needs to be dynamic
-{
-  /* <TeamForm onAddTeam={handleAddTeam} /> */
 }

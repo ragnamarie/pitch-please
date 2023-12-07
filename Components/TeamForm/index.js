@@ -1,10 +1,11 @@
-export default function TeamForm({ onAddTeam }) {
+import { StyledAddButton, StyledForm, StyledTextBox } from "./StyledTeamForm";
+
+export default function TeamForm({ onAddTeam, onButtonClick }) {
   return (
-    <form onSubmit={onAddTeam}>
-      <p>add a new team:</p>
+    <StyledForm onSubmit={onAddTeam}>
       <label htmlFor="team-input"></label>
-      <input type="text" id="team-input" name="team" />
-      <button type="submit">ADD</button>
-    </form>
+      <StyledTextBox type="text" id="team-input" name="team" />
+      <StyledAddButton type="submit">ADD NEW TEAM</StyledAddButton>
+    </StyledForm>
   );
 }

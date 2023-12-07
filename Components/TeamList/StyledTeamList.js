@@ -40,16 +40,18 @@ export const StyledTeamName = styled.div`
   left: 50px;
 `;
 
-export const StyledPlus = styled.div`
+export const StyledPlusButton = styled.button`
   position: absolute;
   top: 50%;
-  left: 44%;
+  left: 43%;
   transform: translate(-50%, -50%);
   color: white;
   font-size: 70px;
   font-family: Futura;
   font-weight: 700;
   word-wrap: break-word;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
 `;
-
-
