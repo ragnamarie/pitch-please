@@ -1,15 +1,27 @@
 import {
   StyledReportButton,
-  StyledForm,
+  StyledReportForm,
   StyledTextBox,
+  StyledTextArea,
 } from "./StyledReportForm";
 
-export default function ReportForm({ onAddTeam }) {
+export default function ReportForm() {
   return (
-    <StyledForm onSubmit={onAddTeam}>
-      <label htmlFor="team-input"></label>
-      <StyledTextBox type="text" id="team-input" name="team" />
-      <StyledReportButton type="submit">SUBMIT</StyledReportButton>
-    </StyledForm>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <StyledReportForm>
+        <StyledTextBox type="text" />
+        <br />
+        <StyledTextBox type="text" />
+        <br />
+        <StyledTextArea />
+        <br />
+        <StyledReportButton type="submit">SUBMIT</StyledReportButton>
+      </StyledReportForm>
+    </div>
   );
 }

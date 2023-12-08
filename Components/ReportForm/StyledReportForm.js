@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledReportButton = styled.button`
-  position: absolute;
+  position: relative;
   color: white;
   background-color: black;
   font-size: 14px;
@@ -11,26 +11,37 @@ export const StyledReportButton = styled.button`
   border: none;
   border-radius: 30px;
   width: 150px;
-  margin-top: 45px;
   padding: 10px;
 `;
 
-export const StyledForm = styled.form`
+export const StyledReportForm = styled.form`
   display: grid;
-  position: relative;
-  left: -65px;
-  top: 3px;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px;
 `;
 
 export const StyledTextBox = styled.input`
-  position: absolute;
+  position: relative;
   font-size: 14px;
   font-family: Helvetica;
   font-weight: 700;
-  width: 150px;
+  width: 20%;
+
   border: solid black;
-  border-width: 1px;
   border-radius: 30px;
   padding: 10px;
+  word-wrap: break-word;
+`;
+
+export const StyledTextArea = styled.textarea`
+  position: relative;
+  font-size: 14px;
+  font-family: Helvetica;
+  font-weight: 700;
+  width: 50%;
+  border: solid black;
+  border-radius: 30px;
+  height: 200px;
   word-wrap: break-word;
 `;
