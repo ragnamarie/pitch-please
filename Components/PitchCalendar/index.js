@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { OrangeSlot } from "./StyledPitchCalendar";
+import { OrangeSlot, TinyReportButton } from "./StyledPitchCalendar";
 import ReportForm from "../ReportForm";
 
 export default function PitchCalendar({ availableTimeSlots, locationName }) {
@@ -82,24 +82,16 @@ export default function PitchCalendar({ availableTimeSlots, locationName }) {
                     <OrangeSlot>
                       <Link href={`/club/${teamSlug}`}>{teamName}</Link>
                       <span>{clubName}</span>
-                      <button
-                        style={{
-                          backgroundColor: "orange",
-                          border: "none",
-                          cursor: "pointer",
-                          fontSize: "10px",
-                          fontFamily: "Futura",
-                        }}
-                      >
+                      <TinyReportButton>
                         <Link
                           style={{
-                            color: "black",
+                            color: "white",
                           }}
                           href={`/report`}
                         >
                           REPORT
                         </Link>
-                      </button>
+                      </TinyReportButton>
                     </OrangeSlot>
                   )}
                 </td>
