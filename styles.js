@@ -38,6 +38,7 @@ li {
 a {
   text-decoration: none;
   color: green;
+  align-self: center;
 }
 
 footer {
@@ -45,6 +46,11 @@ footer {
   bottom: 0;
 }
 
+tr {
 
+}
 
+td {
+padding: 20px;
+}
 `;
