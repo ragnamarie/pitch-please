@@ -1,28 +1,31 @@
 import Link from "next/link";
 import Counter from "../Counter";
-import { useSession } from "next-auth/react";
+import { StyledTabWhite, StyledTabGreen } from "./StyledNavigation";
+import { useState } from "react";
 
 export default function Navigation({ availableTimeSlots }) {
   return (
     <ul>
       <li>
-        <Link href="/club">my club</Link>
+        <StyledTabWhite>
+          <Link href="/club">my club</Link>
+        </StyledTabWhite>
       </li>
       <li>
-        <Link href="/pitches">pitches</Link>
+        <StyledTabWhite>
+          <Link href="/pitches">pitches</Link>
+        </StyledTabWhite>
       </li>
       <li>
-        <Link href="/account">account</Link>
+        <StyledTabWhite>
+          <Link href="/account">account</Link>
+        </StyledTabWhite>
       </li>
-      <span
-        style={{
-          padding: "5px",
-          backgroundColor: "green",
-          borderRadius: "30px",
-        }}
-      >
-        <Counter availableTimeSlots={availableTimeSlots} />
-      </span>
+      <li>
+        <StyledTabGreen>
+          <Counter availableTimeSlots={availableTimeSlots} />
+        </StyledTabGreen>
+      </li>
     </ul>
   );
 }
