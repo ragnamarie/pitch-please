@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { OrangeSlot, TinyReportButton } from "./StyledPitchCalendar";
-import ReportForm from "../ReportForm";
 
-export default function PitchCalendar({ availableTimeSlots, locationName }) {
-  console.log("loco" + locationName);
+export default function PitchCalendar({
+  availableTimeSlots,
+  locationName,
+  onFormValues,
+}) {
   const tableData = {
     "04:00 PM": {
       monday: "",
@@ -68,7 +70,7 @@ export default function PitchCalendar({ availableTimeSlots, locationName }) {
         {Object.keys(tableData).map((time, index) => (
           <tr key={index}>
             <td>{time}</td>
-            {Object.values(tableData[time]).map((teamName, index) => {
+            {Object.entries(tableData[time]).map(([day, teamName], index) => {
               const teamSlug = availableTimeSlots.find(
                 (slot) => slot.time === time && slot.teamName === teamName
               )?.teamSlug;
@@ -82,7 +84,11 @@ export default function PitchCalendar({ availableTimeSlots, locationName }) {
                     <OrangeSlot>
                       <Link href={`/club/${teamSlug}`}>{teamName}</Link>
                       <span>{clubName}</span>
-                      <TinyReportButton>
+                      <TinyReportButton
+                        onClick={() =>
+                          onFormValues(teamName, clubName, time, day)
+                        }
+                      >
                         <Link
                           style={{
                             color: "white",

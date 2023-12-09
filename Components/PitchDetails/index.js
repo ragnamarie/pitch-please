@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import PitchCalendar from "../PitchCalendar";
 
-export default function PitchDetails({ availableTimeSlots }) {
+export default function PitchDetails({ availableTimeSlots, onFormValues }) {
   const uniquePitches = [];
   const seenPitches = {}; // To keep track of seen locations
 
@@ -39,6 +39,7 @@ export default function PitchDetails({ availableTimeSlots }) {
       <PitchCalendar
         availableTimeSlots={availableTimeSlots}
         locationName={matchedPitch.name}
+        onFormValues={onFormValues}
       />
     </div>
   );

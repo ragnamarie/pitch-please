@@ -22,8 +22,12 @@ export default function App({ Component, pageProps, session }) {
     }
   );
 
+  // this is for the report form
+  const [formValues, setFormValues] = useState();
+  // this is for the report form
+
   if (isLoadingAvailableSlotsData) {
-    return <h1>kick-off is just around the corner...</h1>;
+    return <h1>LOADING...</h1>;
   }
 
   if (!availableSlotsData) {
@@ -130,6 +134,22 @@ export default function App({ Component, pageProps, session }) {
     }
   }
 
+  // this is for the report form
+  function handleFormValues(
+    reportedTeam,
+    reportedClub,
+    reportedTime,
+    reportedDay
+  ) {
+    setFormValues({
+      reportedClub: reportedClub,
+      reportedTeam: reportedTeam,
+      reportedTime: reportedTime,
+      reportedDay: reportedDay,
+    });
+  }
+  // this is for the report form
+
   console.log(availableSlotsData);
 
   return (
@@ -142,6 +162,8 @@ export default function App({ Component, pageProps, session }) {
             onSlotChange={handleSlotChange}
             onSlotRelease={handleSlotRelease}
             availableTimeSlots={availableSlotsData}
+            onFormValues={handleFormValues}
+            formValues={formValues}
           />
         </Layout>
       </SWRConfig>
