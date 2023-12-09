@@ -83,7 +83,14 @@ export default function PitchCalendar({
                 <td key={index}>
                   {teamName && (
                     <OrangeSlot>
-                      <Link href={`/club/${teamSlug}`}>{teamName}</Link>
+                      <u>
+                        <Link
+                          style={{ color: "black" }}
+                          href={`/club/${teamSlug}`}
+                        >
+                          {teamName}
+                        </Link>
+                      </u>
                       <span>{clubName}</span>
                       <TinyReportButton
                         onClick={() =>

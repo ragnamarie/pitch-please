@@ -5,6 +5,7 @@ export const OrangeSlot = styled.span`
   padding: 12px;
   background-color: orange;
   border-radius: 30px;
+  border: solid black;
   font-size: 14px;
   display: flex;
   flex-direction: column;

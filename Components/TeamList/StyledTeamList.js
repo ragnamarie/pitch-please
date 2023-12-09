@@ -17,7 +17,7 @@ export const StyledCounter = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: green;
   font-size: 45px;
   font-family: Futura;
   font-weight: 700;
