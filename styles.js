@@ -10,6 +10,10 @@ export default createGlobalStyle`
 body {
     font-family: 'Futura', sans-serif;
     font-weight: 500;
+    margin: 0;
+    padding: 15px;
+    height: 100vh;
+    width: 100vw;
   }
 
 h1 {
