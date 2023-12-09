@@ -139,13 +139,17 @@ export default function App({ Component, pageProps, session }) {
     reportedTeam,
     reportedClub,
     reportedTime,
-    reportedDay
+    reportedDay,
+    reportedPitch,
+    reportedSlug
   ) {
     setFormValues({
       reportedClub: reportedClub,
       reportedTeam: reportedTeam,
       reportedTime: reportedTime,
       reportedDay: reportedDay,
+      reportedPitch: reportedPitch,
+      reportedSlug: reportedSlug,
     });
   }
   // this is for the report form

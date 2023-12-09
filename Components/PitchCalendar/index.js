@@ -4,6 +4,7 @@ import { OrangeSlot, TinyReportButton } from "./StyledPitchCalendar";
 export default function PitchCalendar({
   availableTimeSlots,
   locationName,
+  locationSlug,
   onFormValues,
 }) {
   const tableData = {
@@ -86,7 +87,14 @@ export default function PitchCalendar({
                       <span>{clubName}</span>
                       <TinyReportButton
                         onClick={() =>
-                          onFormValues(teamName, clubName, time, day)
+                          onFormValues(
+                            teamName,
+                            clubName,
+                            time,
+                            day,
+                            locationName,
+                            locationSlug
+                          )
                         }
                       >
                         <Link
