@@ -30,6 +30,13 @@ export default function ReportForm({ formValues }) {
         <br />
         <StyledTextBox
           type="text"
+          id="pitch-input"
+          name="pitch"
+          defaultValue={formValues.reportedPitch}
+        />
+        <br />
+        <StyledTextBox
+          type="text"
           id="time-input"
           name="time"
           defaultValue={formValues.reportedTime}

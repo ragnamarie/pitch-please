@@ -21,7 +21,6 @@ export default function PitchDetails({ availableTimeSlots, onFormValues }) {
 
   const router = useRouter();
   const { slug } = router.query;
-  console.log("id:" + slug);
 
   // Find the pitch that matches the ID in the URL
   const matchedPitch = uniquePitches.find((pitch) => pitch.slug === slug);
@@ -39,6 +38,7 @@ export default function PitchDetails({ availableTimeSlots, onFormValues }) {
       <PitchCalendar
         availableTimeSlots={availableTimeSlots}
         locationName={matchedPitch.name}
+        locationSlug={matchedPitch.slug}
         onFormValues={onFormValues}
       />
     </div>
