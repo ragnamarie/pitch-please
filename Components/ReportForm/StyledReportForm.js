@@ -34,6 +34,7 @@ export const StyledTextBox = styled.input`
 
 export const StyledTextArea = styled.textarea`
   position: relative;
+  padding: 15px;
   font-size: 14px;
   font-family: Helvetica;
   font-weight: 700;
