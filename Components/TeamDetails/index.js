@@ -5,6 +5,8 @@ import BookedSlots from "../BookedSlots";
 import AvailableSlots from "../AvailableSlots";
 import { useSession } from "next-auth/react";
 import { StyledDeleteButton } from "./StyledTeamDetails";
+import DeleteBlocker from "../DeleteBlocker";
+import { useState } from "react";
 
 export default function TeamDetails({
   onSlotChange,
@@ -14,6 +16,8 @@ export default function TeamDetails({
   const router = useRouter();
   const { slug } = router.query;
   console.log(slug);
+
+  const [showDeleteBlocker, setShowDeleteBlocker] = useState(false);
 
   const { data: session } = useSession();
 
@@ -52,6 +56,7 @@ export default function TeamDetails({
 
     if (isTeamUsed) {
       // If deletion is not allowed, do nothing
+      setShowDeleteBlocker(true);
       return;
     }
     const response = await fetch(`/api/teams/${slug}`, { method: "DELETE" });
@@ -85,6 +90,7 @@ export default function TeamDetails({
         <StyledDeleteButton onClick={handleDeleteTeam}>
           DELETE TEAM
         </StyledDeleteButton>
+        {showDeleteBlocker && <DeleteBlocker />}
         <AvailableSlots
           availableTimeSlots={availableTimeSlots}
           clubNameSlots={clubNameSlots}
