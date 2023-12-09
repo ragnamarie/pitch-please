@@ -7,6 +7,13 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  header {
+
+    padding: 15px;
+    margin: 0;
+    width: 100%;
+  }
+
 body {
     font-family: 'Futura', sans-serif;
     font-weight: 500;
@@ -14,6 +21,7 @@ body {
     padding: 15px;
     height: 100vh;
     width: 100vw;
+
   }
 
 h1 {

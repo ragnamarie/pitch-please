@@ -6,7 +6,7 @@ export default function Layout({ children, availableTimeSlots }) {
   const { data: session } = useSession();
 
   return (
-    <div>
+    <>
       <header>
         <h1>PITCH, PLEASE!</h1>
         {session && <Navigation availableTimeSlots={availableTimeSlots} />}
@@ -17,6 +17,6 @@ export default function Layout({ children, availableTimeSlots }) {
           <small>PITCH, PLEASE!&copy;</small>
         </p>
       </footer>
-    </div>
+    </>
   );
 }

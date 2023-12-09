@@ -17,13 +17,5 @@ export default function Counter({ availableTimeSlots }) {
   );
   const availableSlotsCount = availableSlotsFilter.length;
 
-  return (
-    <div
-      style={{
-        color: "white",
-      }}
-    >
-      available slots: {availableSlotsCount}
-    </div>
-  );
+  return <>available slots: {availableSlotsCount}</>;
 }
