@@ -2,6 +2,7 @@ import useSWR from "swr";
 import ProfileForm from "@/Components/ProfileForm";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function EditProfilePage() {
   const { data: session, status } = useSession();
@@ -9,6 +10,8 @@ export default function EditProfilePage() {
   const { data, isLoading, mutate } = useSWR(
     session ? `api/users/${session.user?.googleId}` : null
   );
+
+  const router = useRouter();
 
   async function handleEditProfile(event) {
     event.preventDefault();
@@ -33,7 +36,7 @@ export default function EditProfilePage() {
     if (response.ok) {
       mutate();
     }
-    // console.log(userData);
+    router.push("/account");
   }
 
   if (isLoading) return <p>Loading...</p>;

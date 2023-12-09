@@ -7,12 +7,16 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body {
+body {
     font-family: 'Futura', sans-serif;
     font-weight: 500;
+    margin: 0;
+    padding: 15px;
+    height: 100vh;
+    width: 100vw;
   }
 
-  h1 {
+h1 {
     font-weight: bold; /* You can adjust this value as well */
     font-size: 54px;
     margin: 0;
@@ -42,12 +46,8 @@ a {
 }
 
 footer {
-  position: fixed;
   bottom: 0;
-}
-
-tr {
-
+  width: 100%;
 }
 
 td {

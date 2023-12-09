@@ -29,7 +29,7 @@ export default function TeamList({ availableTimeSlots }) {
   } = useSWR(session ? `/api/users/${session.user?.googleId}` : null);
 
   if (teamLoading || userLoading) {
-    return <h1>kick-off is just around the corner...</h1>;
+    return <h1>LOADING...</h1>;
   }
 
   if (!teamData || userError) {
