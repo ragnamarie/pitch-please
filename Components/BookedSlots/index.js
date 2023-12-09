@@ -19,15 +19,21 @@ export default function BookedSlots({
           <span
             style={{
               padding: "4px",
-              cursor: "pointer",
               backgroundColor: "orange",
               borderRadius: "30px",
+              border: "solid black",
+              padding: "8px",
             }}
           >
             <span>
-              <Link href={`/pitches/${bookedTimeSlot.locationSlug}`}>
-                <b>{bookedTimeSlot.locationName}</b>
-              </Link>
+              <u>
+                <Link
+                  style={{ color: "black" }}
+                  href={`/pitches/${bookedTimeSlot.locationSlug}`}
+                >
+                  <b>{bookedTimeSlot.locationName}</b>
+                </Link>
+              </u>
             </span>{" "}
             <span>
               {bookedTimeSlot.day}, {bookedTimeSlot.time}

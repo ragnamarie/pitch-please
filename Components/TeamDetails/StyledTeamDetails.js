@@ -14,3 +14,13 @@ export const StyledDeleteButton = styled.button`
   padding: 10px;
   cursor: pointer;
 `;
+
+export const SlotWrapper = styled.button`
+  display: grid;
+  gap: 6px;
+  background-color: green;
+  border: none;
+  font-size: 14px;
+  font-family: Futura;
+  font-weight: 700;
+`;

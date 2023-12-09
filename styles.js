@@ -7,20 +7,27 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  header {
+  #__next {
+    margin: 0;
+    height: 100vh;
+  }
 
-    padding: 15px;
+  header {
+padding: 15px;
     margin: 0;
     width: 100%;
-  }
+    border-bottom: solid green;
+    height: 118px;
+    background-color: white;
+  } 
 
 body {
     font-family: 'Futura', sans-serif;
     font-weight: 500;
     margin: 0;
-    padding: 15px;
     height: 100vh;
     width: 100vw;
+    background-color: green;
 
   }
 
@@ -38,7 +45,7 @@ ul {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; 
-  gap: 15px;
+  gap: 25px;
   padding: 0;
 }
 
@@ -49,8 +56,12 @@ li {
 
 a {
   text-decoration: none;
-  color: green;
+  color: white;
   align-self: center;
+}
+
+header a {
+  color: green;
 }
 
 footer {

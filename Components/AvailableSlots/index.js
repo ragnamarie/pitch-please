@@ -24,7 +24,8 @@ export default function AvailableSlots({
               cursor: "pointer",
               backgroundColor: "green",
               borderRadius: "30px",
-              border: "none",
+              border: "solid white",
+              padding: "8px",
             }}
             onClick={() =>
               onSlotChange(
