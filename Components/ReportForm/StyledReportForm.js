@@ -17,7 +17,6 @@ export const StyledReportButton = styled.button`
 export const StyledReportForm = styled.form`
   display: grid;
   flex-direction: column;
-  gap: 10px;
   margin: 15px;
 `;
 
@@ -27,7 +26,6 @@ export const StyledTextBox = styled.input`
   font-family: Helvetica;
   font-weight: 700;
   width: 20%;
-
   border: solid black;
   border-radius: 30px;
   padding: 10px;

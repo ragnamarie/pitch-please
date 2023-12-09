@@ -18,6 +18,8 @@ export default function ReportForm() {
         <br />
         <StyledTextBox type="text" />
         <br />
+        <StyledTextBox type="text" />
+        <br />
         <StyledTextArea />
         <br />
         <StyledReportButton type="submit">SUBMIT</StyledReportButton>
