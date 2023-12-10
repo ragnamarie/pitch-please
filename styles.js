@@ -13,11 +13,11 @@ export default createGlobalStyle`
   }
 
   header {
-padding: 15px;
-    margin: 0;
+padding-top: 20px;
+padding-left: 30px;
     width: 100%;
     border-bottom: solid green;
-    height: 118px;
+    height: 136px;
     background-color: white;
   } 
 
@@ -48,6 +48,7 @@ ul {
   flex-wrap: wrap; 
   gap: 25px;
   padding: 0;
+  padding-top: 15px;
 }
 
 li {

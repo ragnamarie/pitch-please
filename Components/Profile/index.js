@@ -13,10 +13,10 @@ export default function Profile({ user }) {
 
   return (
     <StyledList>
-      <li>club: {clubName}</li>
-      <li>manager: {managerName}</li>
-      <li>username: {userName}</li>
-      <li>email: {email}</li>
+      <li>Club: {clubName}</li>
+      <li>Manager: {managerName}</li>
+      <li>Username: {userName}</li>
+      <li>E-Mail: {email}</li>
     </StyledList>
   );
 }

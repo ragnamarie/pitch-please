@@ -15,13 +15,18 @@ export const StyledDeleteButton = styled.button`
   cursor: pointer;
 `;
 
-export const SlotWrapper = styled.button`
+export const SlotWrapper = styled.div`
   display: grid;
-  gap: 6px;
+  gap: 4px;
   background-color: green;
   border: none;
   font-size: 14px;
   font-family: Futura;
   font-weight: 700;
   padding: 0;
+`;
+
+export const DeleteWrapper = styled.div`
+  display: flex;
+  margin-bottom: 5px;
 `;

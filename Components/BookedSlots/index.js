@@ -19,16 +19,17 @@ export default function BookedSlots({
           <span
             style={{
               padding: "4px",
-              backgroundColor: "orange",
+              backgroundColor: "white",
+              color: "green",
               borderRadius: "30px",
-              border: "solid black",
+              border: "none",
               padding: "8px",
             }}
           >
             <span>
               <u>
                 <Link
-                  style={{ color: "black" }}
+                  style={{ color: "green" }}
                   href={`/pitches/${bookedTimeSlot.locationSlug}`}
                 >
                   <b>{bookedTimeSlot.locationName}</b>
@@ -41,7 +42,7 @@ export default function BookedSlots({
             <button
               style={{
                 borderRadius: "50%",
-                backgroundColor: "orange",
+                backgroundColor: "white",
                 border: "none",
                 cursor: "pointer",
               }}

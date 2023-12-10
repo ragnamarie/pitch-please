@@ -8,7 +8,7 @@ export default function ReportPage({ formValues }) {
       <Link href={`/pitches/${formValues.reportedSlug}`}>
         ← Back to Calender
       </Link>
-      <h2>report a team</h2>
+      <h2>Report a team</h2>
       <ReportForm formValues={formValues} />
     </WrapperTwo>
   );
