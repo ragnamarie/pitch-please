@@ -1,8 +1,9 @@
 import { signIn, getSession } from "next-auth/react";
+import { Wrapper } from "./styledPages";
 
 export default function HomePage() {
   return (
-    <div>
+    <Wrapper>
       <h1>
         log in{" "}
         <span
@@ -14,7 +15,7 @@ export default function HomePage() {
           <u>here</u>.
         </span>
       </h1>
-    </div>
+    </Wrapper>
   );
 }
 
