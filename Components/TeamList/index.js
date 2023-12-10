@@ -15,8 +15,8 @@ import {
 } from "./StyledTeamList.js";
 
 export default function TeamList({ availableTimeSlots }) {
-  const [isButtonClicked, setButtonClicked] = useState(false);
   const { data: session } = useSession();
+  const [isButtonClicked, setButtonClicked] = useState(false);
 
   const {
     data: teamData,
@@ -42,6 +42,7 @@ export default function TeamList({ availableTimeSlots }) {
 
   const userClub = session.user.clubName;
   const userClubData = teamData.filter((team) => team.club === userClub);
+  console.log(userClub);
 
   function handleButtonClick() {
     // Toggle the value of isButtonClicked
@@ -97,6 +98,7 @@ export default function TeamList({ availableTimeSlots }) {
               <StyledCounter>
                 <TeamCounter
                   name={team.name}
+                  club={userClub}
                   availableTimeSlots={availableTimeSlots}
                 />
               </StyledCounter>

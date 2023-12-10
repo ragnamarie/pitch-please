@@ -11,7 +11,7 @@ export default function ProfileForm({ user, onEditProfile }) {
   }
 
   // Destructure the first (and presumably only) object in the array
-  const { club, manager } = user[0];
+  const { club, manager } = user;
 
   return (
     <StyledForm onSubmit={onEditProfile}>

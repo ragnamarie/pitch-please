@@ -6,14 +6,15 @@ export default async function handler(request, response) {
   console.log("api" + googleId);
   console.log(request.body);
 
-  try {
-    await dbConnect();
-
-    const users = await User.find({ googleId });
-
-    response.status(200).json(users);
-  } catch (error) {
-    console.log(error);
+  if (request.method === "GET") {
+    try {
+      await dbConnect();
+      const user = await User.findOne({ googleId: googleId });
+      response.status(200).json(user);
+    } catch (error) {
+      console.error(error);
+      response.status(500).json({ error: "Internal Server Error" });
+    }
   }
 
   if (request.method === "PATCH") {

@@ -24,7 +24,7 @@ export default function Account() {
     return (
       <Wrapper>
         <ButtonWrapper>
-          <h2>Hey there, {session.user.clubName}!</h2>
+          <h2>Hey there, {data?.clubName}!</h2>
           <SignInAndOutButton onClick={() => signOut()}>
             SIGN OUT
           </SignInAndOutButton>

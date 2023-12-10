@@ -4,7 +4,11 @@ import useSWR from "swr";
 import BookedSlots from "../BookedSlots";
 import AvailableSlots from "../AvailableSlots";
 import { useSession } from "next-auth/react";
-import { StyledDeleteButton, SlotWrapper, DeleteWrapper } from "./StyledTeamDetails";
+import {
+  StyledDeleteButton,
+  SlotWrapper,
+  DeleteWrapper,
+} from "./StyledTeamDetails";
 import { WrapperTwo } from "@/pages/styledPages";
 import DeleteBlocker from "../DeleteBlocker";
 import { useState } from "react";
@@ -16,7 +20,8 @@ export default function TeamDetails({
 }) {
   const router = useRouter();
   const { slug } = router.query;
-  console.log(slug);
+
+  console.log("slug" + slug);
 
   const [showDeleteBlocker, setShowDeleteBlocker] = useState(false);
 
@@ -39,11 +44,13 @@ export default function TeamDetails({
     return <p>Error loading data...</p>;
   }
 
-  console.log(teamData);
-  console.log(userData);
+  console.log("teamData" + teamData);
+  console.log("userData" + userData.clubName);
+  console.log("seession" + session.user?.googleId);
 
-  const { clubName } = userData[0];
-  const userClub = clubName;
+  const userClub = userData.clubName;
+
+  console.log("userClub" + userClub);
 
   // Use the filter method to create a new array with objects that match the condition
   const clubNameSlots = availableTimeSlots.filter(
@@ -79,8 +86,8 @@ export default function TeamDetails({
   }
 
   console.log(teamData);
-  console.log(teamData.name);
-  console.log(teamData.club);
+  console.log(teamData.slug);
+  console.log("teamDAtacalub" + teamData.club);
 
   return (
     <WrapperTwo>
@@ -99,13 +106,13 @@ export default function TeamDetails({
           onSlotChange={onSlotChange}
           teamSlug={teamData.slug}
           teamName={teamData.name}
-          clubName={teamData.club}
+          clubName={userClub}
         />
         <BookedSlots
           availableTimeSlots={availableTimeSlots}
           onSlotRelease={onSlotRelease}
           teamSlug={teamData.slug}
-          clubName={teamData.club}
+          clubName={userClub}
           clubNameSlots={clubNameSlots}
         />
       </SlotWrapper>
