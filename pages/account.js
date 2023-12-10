@@ -24,7 +24,7 @@ export default function Account() {
     return (
       <Wrapper>
         <ButtonWrapper>
-          <h2>hey there, {session.user.clubName}!</h2>
+          <h2>Hey there, {session.user.clubName}!</h2>
           <SignInAndOutButton onClick={() => signOut()}>
             SIGN OUT
           </SignInAndOutButton>
@@ -46,7 +46,7 @@ export default function Account() {
   } else {
     return (
       <div>
-        <p>you are not signed in.</p>
+        <p>You are not signed in.</p>
         <SignInAndOutButton onClick={() => signIn()}>
           SIGN IN
         </SignInAndOutButton>
@@ -66,41 +66,3 @@ export const getServerSideProps = async (context) => {
 
   return { props: { session } };
 };
-
-// keeping this for now just to be safe
-
-//   if (status === "authenticated") {
-//     return (
-//       <div>
-//         <p>you are logged in with {session.user.email}</p>
-//         <button
-//           style={{
-//             fontFamily: "Futura",
-//             padding: "8px",
-//             cursor: "pointer",
-//             borderRadius: "30px",
-//             border: "none",
-//           }}
-//           onClick={() => signOut()}
-//         >
-//           SIGN OUT
-//         </button>
-//         <span
-//           style={{
-//             padding: "5px",
-//             backgroundColor: "green",
-//             borderRadius: "30px",
-//           }}
-//         >
-//           <Link href="/editprofile">EDIT PROFILE</Link>
-//         </span>
-//       </div>
-//     );
-//   } else {
-//     return (
-//       <div>
-//         <p>you are not signed in.</p>
-//       </div>
-//     );
-//   }
-// };

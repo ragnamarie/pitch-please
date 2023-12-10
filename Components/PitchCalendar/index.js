@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { OrangeSlot, TinyReportButton } from "./StyledPitchCalendar";
+import { WhiteSlot, TinyReportButton } from "./StyledPitchCalendar";
 
 export default function PitchCalendar({
   availableTimeSlots,
@@ -59,10 +59,10 @@ export default function PitchCalendar({
     <table style={{ width: "100%" }}>
       <thead>
         <tr>
-          <th style={{ width: "10%" }}></th>
+          <th style={{ width: "15%" }}></th>
           {Object.keys(tableData["04:00 PM"]).map((day, index) => (
             <th
-              style={{ color: "white", width: "16%", fontWeight: "500" }}
+              style={{ color: "white", width: "17%", fontWeight: "500" }}
               key={index}
             >
               {day.charAt(0).toUpperCase() + day.slice(1)}
@@ -85,10 +85,12 @@ export default function PitchCalendar({
               return (
                 <td key={index}>
                   {teamName && (
-                    <OrangeSlot>
+                    <WhiteSlot>
                       <u>
                         <Link
-                          style={{ color: "black" }}
+                          style={{
+                            color: "green",
+                          }}
                           href={`/club/${teamSlug}`}
                         >
                           {teamName}
@@ -116,7 +118,7 @@ export default function PitchCalendar({
                           REPORT
                         </Link>
                       </TinyReportButton>
-                    </OrangeSlot>
+                    </WhiteSlot>
                   )}
                 </td>
               );

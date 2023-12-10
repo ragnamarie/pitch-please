@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
-export const OrangeSlot = styled.span`
+export const WhiteSlot = styled.span`
   position: relative;
   padding: 12px;
-  background-color: orange;
+  background-color: white;
   border-radius: 30px;
-  border: solid black;
+  border: none;
   font-size: 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  color: black;
+  gap: 5px;
+  color: green;
   font-weight: 700;
 `;
 
