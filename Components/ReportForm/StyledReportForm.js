@@ -25,7 +25,7 @@ export const StyledTextBox = styled.input`
   font-size: 14px;
   font-family: Helvetica;
   font-weight: 700;
-  width: 20%;
+  width: 25%;
   border: solid black;
   border-radius: 30px;
   padding: 10px;

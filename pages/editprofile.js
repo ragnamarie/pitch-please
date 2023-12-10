@@ -3,6 +3,7 @@ import ProfileForm from "@/Components/ProfileForm";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { WrapperTwo } from "./styledPages";
 
 export default function EditProfilePage() {
   const { data: session, status } = useSession();
@@ -43,10 +44,10 @@ export default function EditProfilePage() {
 
   if (status === "authenticated") {
     return (
-      <div>
+      <WrapperTwo>
         <Link href="/account">← Back to Account</Link>
         <ProfileForm user={data} onEditProfile={handleEditProfile} />
-      </div>
+      </WrapperTwo>
     );
   }
 }

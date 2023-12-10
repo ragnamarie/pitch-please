@@ -11,6 +11,8 @@ export const OrangeSlot = styled.span`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  color: black;
+  font-weight: 700;
 `;
 
 export const ReportButton = styled.button`

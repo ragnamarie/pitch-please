@@ -5,6 +5,7 @@ import BookedSlots from "../BookedSlots";
 import AvailableSlots from "../AvailableSlots";
 import { useSession } from "next-auth/react";
 import { StyledDeleteButton, SlotWrapper } from "./StyledTeamDetails";
+import { WrapperTwo } from "@/pages/styledPages";
 import DeleteBlocker from "../DeleteBlocker";
 import { useState } from "react";
 
@@ -82,10 +83,9 @@ export default function TeamDetails({
   console.log(teamData.club);
 
   return (
-    <>
+    <WrapperTwo>
       <Link href="/club">← Back to List</Link>
       <h2>{teamData.name}</h2>
-
       <SlotWrapper>
         <StyledDeleteButton onClick={handleDeleteTeam}>
           DELETE TEAM
@@ -107,6 +107,6 @@ export default function TeamDetails({
           clubNameSlots={clubNameSlots}
         />
       </SlotWrapper>
-    </>
+    </WrapperTwo>
   );
 }

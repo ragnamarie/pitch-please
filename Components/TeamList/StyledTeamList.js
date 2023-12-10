@@ -12,6 +12,12 @@ export const StyledPolygon = styled.svg`
   width: 88px;
 `;
 
+export const Wrapper = styled.div`
+  padding: 30px;
+  display: grid;
+  gap: 15px;
+`;
+
 export const StyledCounter = styled.div`
   position: absolute;
   top: 50%;

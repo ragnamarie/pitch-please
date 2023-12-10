@@ -4,8 +4,8 @@ export const StyledList = styled.ul`
   display: flex;
   gap: 70px;
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding-top: 140px;
+  padding-left: 30px;
 `;
 
 export const StyledPolygon = styled.svg`

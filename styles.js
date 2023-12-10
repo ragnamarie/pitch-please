@@ -38,7 +38,8 @@ h1 {
 }
 
 h2 {
-  font-weight: 700; /* You can adjust this value as well */
+  font-weight: 700;
+  color: white;
 }
 
 ul {    
@@ -66,7 +67,11 @@ header a {
 
 footer {
   bottom: 0;
+  position: fixed;
   width: 100%;
+  color: white;
+  font-weight: 700;
+  padding-left: 30px;
 }
 
 td {
