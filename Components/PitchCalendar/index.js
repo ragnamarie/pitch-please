@@ -61,7 +61,10 @@ export default function PitchCalendar({
         <tr>
           <th style={{ width: "10%" }}></th>
           {Object.keys(tableData["04:00 PM"]).map((day, index) => (
-            <th style={{ width: "16%" }} key={index}>
+            <th
+              style={{ color: "white", width: "16%", fontWeight: "500" }}
+              key={index}
+            >
               {day.charAt(0).toUpperCase() + day.slice(1)}
             </th>
           ))}
@@ -69,7 +72,7 @@ export default function PitchCalendar({
       </thead>
       <tbody>
         {Object.keys(tableData).map((time, index) => (
-          <tr key={index}>
+          <tr style={{ color: "white" }} key={index}>
             <td>{time}</td>
             {Object.entries(tableData[time]).map(([day, teamName], index) => {
               const teamSlug = availableTimeSlots.find(

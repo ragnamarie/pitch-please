@@ -7,5 +7,6 @@ export const StyledList = styled.ul`
   margin-top: 10px;
   font-size: 14px;
   font-family: Helvetica;
-  font-weight: 700;
+  font-weight: 500;
+  color: white;
 `;

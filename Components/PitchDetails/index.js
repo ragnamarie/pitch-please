@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import PitchCalendar from "../PitchCalendar";
+import { WrapperTwo } from "@/pages/styledPages";
 
 export default function PitchDetails({ availableTimeSlots, onFormValues }) {
   const uniquePitches = [];
@@ -31,16 +32,16 @@ export default function PitchDetails({ availableTimeSlots, onFormValues }) {
   }
 
   return (
-    <div>
+    <WrapperTwo>
       <Link href="/pitches">← Back to List</Link>
 
-      <h1>{matchedPitch.name}</h1>
+      <h2>{matchedPitch.name}</h2>
       <PitchCalendar
         availableTimeSlots={availableTimeSlots}
         locationName={matchedPitch.name}
         locationSlug={matchedPitch.slug}
         onFormValues={onFormValues}
       />
-    </div>
+    </WrapperTwo>
   );
 }

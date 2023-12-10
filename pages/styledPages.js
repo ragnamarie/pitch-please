@@ -6,6 +6,19 @@ export const ButtonWrapper = styled.div`
   gap: 6px;
 `;
 
+export const Wrapper = styled.div`
+  padding: 30px;
+  display: grid;
+  gap: 15px;
+`;
+
+export const WrapperTwo = styled.div`
+  padding: 30px;
+  padding-top: 50px;
+  display: grid;
+  gap: 15px;
+`;
+
 export const SignInAndOutButton = styled.button`
   align-self: center;
   position: relative;

@@ -23,4 +23,5 @@ export const SlotWrapper = styled.button`
   font-size: 14px;
   font-family: Futura;
   font-weight: 700;
+  padding: 0;
 `;

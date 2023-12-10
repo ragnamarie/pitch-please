@@ -11,6 +11,7 @@ import {
   StyledCounter,
   StyledTeamName,
   StyledPlusButton,
+  Wrapper,
 } from "./StyledTeamList.js";
 
 export default function TeamList({ availableTimeSlots }) {
@@ -74,7 +75,7 @@ export default function TeamList({ availableTimeSlots }) {
   }
 
   return (
-    <div>
+    <Wrapper>
       <h2>{userClub}</h2>
       <StyledList>
         {userClubData.map((team) => (
@@ -125,6 +126,6 @@ export default function TeamList({ availableTimeSlots }) {
         </li>
         <li>{isButtonClicked && <TeamForm onAddTeam={handleAddTeam} />}</li>
       </StyledList>
-    </div>
+    </Wrapper>
   );
 }

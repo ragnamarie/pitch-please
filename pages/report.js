@@ -1,14 +1,15 @@
 import ReportForm from "@/Components/ReportForm";
 import Link from "next/link";
+import { WrapperTwo } from "./styledPages";
 
 export default function ReportPage({ formValues }) {
   return (
-    <div>
+    <WrapperTwo>
       <Link href={`/pitches/${formValues.reportedSlug}`}>
         ← Back to Calender
       </Link>
       <h2>report a team</h2>
       <ReportForm formValues={formValues} />
-    </div>
+    </WrapperTwo>
   );
 }

@@ -4,6 +4,7 @@ import useSWR from "swr";
 import Profile from "@/Components/Profile";
 import {
   ButtonWrapper,
+  Wrapper,
   SignInAndOutButton,
   EditProfileButton,
 } from "./styledPages";
@@ -21,7 +22,7 @@ export default function Account() {
 
   if (status === "authenticated") {
     return (
-      <div>
+      <Wrapper>
         <ButtonWrapper>
           <h2>hey there, {session.user.clubName}!</h2>
           <SignInAndOutButton onClick={() => signOut()}>
@@ -40,7 +41,7 @@ export default function Account() {
         </ButtonWrapper>
 
         <Profile user={data} />
-      </div>
+      </Wrapper>
     );
   } else {
     return (

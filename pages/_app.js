@@ -23,7 +23,9 @@ export default function App({ Component, pageProps, session }) {
   );
 
   // this is for the report form
-  const [formValues, setFormValues] = useState();
+  const [formValues, setFormValues] = useLocalStorageState("formValues", {
+    defaultValue: [],
+  });
   // this is for the report form
 
   if (isLoadingAvailableSlotsData) {
