@@ -186,7 +186,7 @@ export default function App({ Component, pageProps, session }) {
 //       `${slot.locationName} - ${slot.day} - ${slot.time}` === selectedValue
 //   );
 
-//   // Update the available property to false
+// Update the available property to false
 //   if (selectedSlot) {
 //     // Check if the slot is not already selected
 //     if (!selectedSlots.some((slot) => slot.id === selectedSlot.id)) {

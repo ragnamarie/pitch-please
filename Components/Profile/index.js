@@ -9,7 +9,7 @@ export default function Profile({ user }) {
   }
 
   // Destructure the first (and presumably only) object in the array
-  const { userName, email, managerName, clubName } = user[0];
+  const { userName, email, managerName, clubName } = user;
 
   return (
     <StyledList>

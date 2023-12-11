@@ -21,7 +21,7 @@ export default function EditProfilePage() {
     const club = formData.get("club");
     const manager = formData.get("manager");
 
-    const response = await fetch(`/api/users/${data[0].googleId}`, {
+    const response = await fetch(`/api/users/${data.googleId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
