@@ -40,7 +40,7 @@ export default function TeamList({ availableTimeSlots }) {
   console.log(teamData);
   console.log(userData);
 
-  const userClub = session.user.clubName;
+  const userClub = userData.clubName;
   const userClubData = teamData.filter((team) => team.club === userClub);
   console.log(userClub);
 

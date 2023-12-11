@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { WhiteSlot, TinyReportButton } from "./StyledPitchCalendar";
+import useSWR from "swr";
+import { useSession } from "next-auth/react";
 
 export default function PitchCalendar({
   availableTimeSlots,
@@ -7,6 +9,15 @@ export default function PitchCalendar({
   locationSlug,
   onFormValues,
 }) {
+  const { data: session } = useSession();
+  const {
+    data: userData,
+    isLoading: userLoading,
+    error: userError,
+  } = useSWR(session ? `/api/users/${session.user?.googleId}` : null);
+
+  console.log(userData.clubName);
+
   const tableData = {
     "04:00 PM": {
       monday: "",
@@ -86,16 +97,20 @@ export default function PitchCalendar({
                 <td key={index}>
                   {teamName && (
                     <WhiteSlot>
-                      <u>
-                        <Link
-                          style={{
-                            color: "green",
-                          }}
-                          href={`/club/${teamSlug}`}
-                        >
-                          {teamName}
-                        </Link>
-                      </u>
+                      {userData.clubName === clubName ? (
+                        <u>
+                          <Link
+                            style={{
+                              color: "green",
+                            }}
+                            href={`/club/${teamSlug}`}
+                          >
+                            {teamName}
+                          </Link>
+                        </u>
+                      ) : (
+                        <span style={{ color: "green" }}>{teamName}</span>
+                      )}
                       <span>{clubName}</span>
                       <TinyReportButton
                         onClick={() =>
