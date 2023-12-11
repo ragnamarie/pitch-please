@@ -9,7 +9,7 @@ import {
   SlotWrapper,
   DeleteWrapper,
 } from "./StyledTeamDetails";
-import { WrapperTwo } from "@/Components/styledPages";
+import { WrapperTwo } from "@/styledPages";
 import DeleteBlocker from "../DeleteBlocker";
 import { useState } from "react";
 

@@ -1,6 +1,6 @@
 import ReportForm from "@/Components/ReportForm";
 import Link from "next/link";
-import { WrapperTwo } from "../Components/styledPages";
+import { WrapperTwo } from "../styledPages";
 
 export default function ReportPage({ formValues }) {
   return (

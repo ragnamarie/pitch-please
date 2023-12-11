@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import PitchCalendar from "../PitchCalendar";
-import { WrapperTwo } from "@/Components/styledPages";
+import { WrapperTwo } from "@/styledPages";
 
 export default function PitchDetails({ availableTimeSlots, onFormValues }) {
   const uniquePitches = [];
