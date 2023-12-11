@@ -13,6 +13,29 @@ export const StyledTabWhite = styled.span`
   width: 117px;
   padding: 10px;
   height: 40px;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Add a smooth transition effect for both color and background-color */
+
+  &:hover {
+    border: solid white;
+    background-color: green; /* Change the background color on hover */
+    color: white; /* Change the font color on hover */
+
+    /* Override link color within the span */
+    a {
+      color: white !important;
+    }
+  }
+
+  &:active {
+    border: solid white;
+    background-color: green; /* Change the background color when clicked */
+    color: white; /* Change the font color when clicked */
+
+    /* Override link color within the span */
+    a {
+      color: white !important;
+    }
+  }
 `;
 
 export const StyledTabGreen = styled.span`

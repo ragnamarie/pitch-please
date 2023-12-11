@@ -10,6 +10,7 @@ export default createGlobalStyle`
   #__next {
     margin: 0;
     height: 100vh;
+
   }
 
   header {
@@ -29,6 +30,10 @@ body {
     width: 100vw;
     background-color: green;
 
+  }
+
+  main {
+    min-height: 75%;
   }
 
 h1 {
@@ -68,7 +73,6 @@ header a {
 
 footer {
   bottom: 0;
-  position: fixed;
   width: 100%;
   color: white;
   font-weight: 700;
