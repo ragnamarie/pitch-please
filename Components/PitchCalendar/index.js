@@ -16,7 +16,7 @@ export default function PitchCalendar({
     error: userError,
   } = useSWR(session ? `/api/users/${session.user?.googleId}` : null);
 
-  console.log(userData.clubName);
+  console.log(userData?.clubName);
 
   const tableData = {
     "04:00 PM": {
@@ -97,7 +97,7 @@ export default function PitchCalendar({
                 <td key={index}>
                   {teamName && (
                     <WhiteSlot>
-                      {userData.clubName === clubName ? (
+                      {userData?.clubName === clubName ? (
                         <u>
                           <Link
                             style={{
