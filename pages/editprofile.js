@@ -3,7 +3,7 @@ import ProfileForm from "@/Components/ProfileForm";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { WrapperTwo } from "./styledPages";
+import { WrapperTwo } from "../Components/styledPages";
 
 export default function EditProfilePage() {
   const { data: session, status } = useSession();

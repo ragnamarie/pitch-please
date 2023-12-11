@@ -1,5 +1,5 @@
 import { signIn, getSession } from "next-auth/react";
-import { Wrapper } from "./styledPages";
+import { Wrapper } from "../Components/styledPages";
 
 export default function HomePage() {
   return (

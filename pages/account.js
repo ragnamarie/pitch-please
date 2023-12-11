@@ -7,7 +7,7 @@ import {
   Wrapper,
   SignInAndOutButton,
   EditProfileButton,
-} from "./styledPages";
+} from "../Components/styledPages";
 
 export default function Account() {
   const { data: session, status } = useSession();
