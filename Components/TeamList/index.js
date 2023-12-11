@@ -57,7 +57,7 @@ export default function TeamList({ availableTimeSlots }) {
     const teamName = formData.get("team");
 
     const teamData = {
-      slug: slugify(teamName, { lower: true }), // Generate slug from team name
+      slug: slugify(`${teamName}-${userClub}`, { lower: true }), // Generate slug from team name
       name: teamName,
       club: userClub, // needs to become dynamic at some point
     };
