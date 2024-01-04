@@ -16,6 +16,7 @@ import {
 
 export default function TeamList({ availableTimeSlots }) {
   const { data: session } = useSession();
+  console.log("Session Data:", session);
   const [isButtonClicked, setButtonClicked] = useState(false);
 
   const {
@@ -23,6 +24,7 @@ export default function TeamList({ availableTimeSlots }) {
     isLoading: teamLoading,
     mutate: mutateTeams,
   } = useSWR(session ? "/api/teams" : null);
+
   const {
     data: userData,
     isLoading: userLoading,

@@ -8,10 +8,14 @@ export default function AvailableSlots({
   teamSlug,
   teamName,
   clubName,
+  onAvailableSlotsCountChange,
 }) {
   const filteredAvailableTimeSlots = clubNameSlots.filter(
     (slot) => slot.isAvailable
   );
+
+  const availableSlotsCount = filteredAvailableTimeSlots.length;
+  console.log(availableSlotsCount);
 
   console.log(clubNameSlots);
   return (
@@ -28,7 +32,8 @@ export default function AvailableSlots({
               padding: "8px",
               color: "white",
             }}
-            onClick={() =>
+            onClick={() => {
+              // Call the first function
               onSlotChange(
                 {
                   target: {
@@ -38,8 +43,13 @@ export default function AvailableSlots({
                 teamSlug,
                 teamName,
                 clubName
-              )
-            }
+              );
+
+              // Call the second function
+              onAvailableSlotsCountChange(availableSlotsCount);
+              // Add your second function call here
+              // Example: anotherFunction();
+            }}
           >
             <b>{clubNameSlot.locationName}</b> {clubNameSlot.day},{" "}
             {clubNameSlot.time}

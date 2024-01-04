@@ -28,6 +28,15 @@ export default function App({ Component, pageProps, session }) {
   });
   // this is for the report form
 
+  //this is for slot count
+  const [availableSlotsCount, setAvailableSlotsCount] = useLocalStorageState(
+    "availableSlotsCount",
+    {
+      defaultValue: [],
+    }
+  );
+  //this is for slot count
+
   if (isLoadingAvailableSlotsData) {
     return <h1>LOADING...</h1>;
   }
@@ -156,12 +165,21 @@ export default function App({ Component, pageProps, session }) {
   }
   // this is for the report form
 
+  // this is for slot count
+
+  function handleAvailableSlotsCountChange(count) {
+    setAvailableSlotsCount(count);
+  }
+  //this is for slot count
+
+  console.log("slotscount", availableSlotsCount);
   console.log(availableSlotsData);
 
+  // availableSlotsCount={availableSlotsCount}
   return (
     <SessionProvider session={session}>
       <SWRConfig value={{ fetcher }}>
-        <Layout availableTimeSlots={availableSlotsData}>
+        <Layout availableSlotsCount={availableSlotsCount}>
           <GlobalStyle />
           <Component
             {...pageProps}
@@ -170,6 +188,7 @@ export default function App({ Component, pageProps, session }) {
             availableTimeSlots={availableSlotsData}
             onFormValues={handleFormValues}
             formValues={formValues}
+            onAvailableSlotsCountChange={handleAvailableSlotsCountChange}
           />
         </Layout>
       </SWRConfig>

@@ -17,6 +17,7 @@ export default function TeamDetails({
   onSlotChange,
   onSlotRelease,
   availableTimeSlots,
+  onAvailableSlotsCountChange,
 }) {
   const router = useRouter();
   const { slug } = router.query;
@@ -26,6 +27,7 @@ export default function TeamDetails({
   const [showDeleteBlocker, setShowDeleteBlocker] = useState(false);
 
   const { data: session } = useSession();
+  console.log("Session Data:", session);
 
   const { data: teamData, isLoading: isLoadingTeamData } = useSWR(
     session ? `/api/teams/${slug}` : null
@@ -46,7 +48,7 @@ export default function TeamDetails({
 
   console.log("teamData" + teamData);
   console.log("userData" + userData.clubName);
-  console.log("seession" + session.user?.googleId);
+  console.log("session" + session.user?.googleId);
 
   const userClub = userData.clubName;
 
@@ -107,6 +109,7 @@ export default function TeamDetails({
           teamSlug={teamData.slug}
           teamName={teamData.name}
           clubName={userClub}
+          onAvailableSlotsCountChange={onAvailableSlotsCountChange}
         />
         <BookedSlots
           availableTimeSlots={availableTimeSlots}
@@ -114,6 +117,7 @@ export default function TeamDetails({
           teamSlug={teamData.slug}
           clubName={userClub}
           clubNameSlots={clubNameSlots}
+          onAvailableSlotsCountChange={onAvailableSlotsCountChange}
         />
       </SlotWrapper>
     </WrapperTwo>

@@ -7,10 +7,19 @@ export default function BookedSlots({
   teamSlug,
   clubName,
   onSlotRelease,
+  onAvailableSlotsCountChange,
 }) {
   const bookedTimeSlots = clubNameSlots.filter(
     (slot) => !slot.isAvailable && slot.teamSlug === teamSlug
   );
+
+  // this is for slot count
+  const filteredAvailableTimeSlots = clubNameSlots.filter(
+    (slot) => slot.isAvailable
+  );
+
+  const availableSlotsCount = filteredAvailableTimeSlots.length;
+  // this is for slot count
 
   return (
     <ul>
@@ -46,7 +55,8 @@ export default function BookedSlots({
                 border: "none",
                 cursor: "pointer",
               }}
-              onClick={() =>
+              onClick={() => {
+                // Call the onSlotRelease function
                 onSlotRelease(
                   {
                     target: {
@@ -54,8 +64,11 @@ export default function BookedSlots({
                     },
                   },
                   clubName
-                )
-              }
+                );
+
+                // Call the onAvailableSlotsCountChange function
+                onAvailableSlotsCountChange(availableSlotsCount);
+              }}
             >
               ✖
             </button>
