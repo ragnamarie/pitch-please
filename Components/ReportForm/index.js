@@ -46,7 +46,7 @@ export default function ReportForm({ formValues }) {
           type="text"
           id="date-input"
           name="date"
-          defaultValue={formValues.reportedDay}
+          defaultValue={`${formValues.reportedDay}, ${formValues.reportedDate}`}
         />
         <br />
         <StyledTextArea placeholder="What do you want to report?" />
