@@ -142,6 +142,7 @@ export default function App({ Component, pageProps, session }) {
     reportedClub,
     reportedTime,
     reportedDay,
+    reportedDate,
     reportedPitch,
     reportedSlug
   ) {
@@ -150,6 +151,7 @@ export default function App({ Component, pageProps, session }) {
       reportedTeam: reportedTeam,
       reportedTime: reportedTime,
       reportedDay: reportedDay,
+      reportedDate: reportedDate,
       reportedPitch: reportedPitch,
       reportedSlug: reportedSlug,
     });

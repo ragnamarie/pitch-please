@@ -16,76 +16,95 @@ export default function PitchCalendar({
     error: userError,
   } = useSWR(session ? `/api/users/${session.user?.googleId}` : null);
 
-  console.log(userData?.clubName);
+  // Function to get the dates of the current week (Monday to Friday)
+  const getDatesOfWeek = () => {
+    const currentDate = new Date();
+    const dayOfWeek = currentDate.getDay();
+    const startDate = new Date(currentDate);
 
-  const tableData = {
-    "04:00 PM": {
-      monday: "",
-      tuesday: "",
-      wednesday: "",
-      thursday: "",
-      friday: "",
-    },
-    "05:30 PM": {
-      monday: "",
-      tuesday: "",
-      wednesday: "",
-      thursday: "",
-      friday: "",
-    },
-    "07:00 PM": {
-      monday: "",
-      tuesday: "",
-      wednesday: "",
-      thursday: "",
-      friday: "",
-    },
-    "08:30 PM": {
-      monday: "",
-      tuesday: "",
-      wednesday: "",
-      thursday: "",
-      friday: "",
-    },
+    // Adjust start date to Monday of the current week
+    startDate.setDate(startDate.getDate() - (dayOfWeek - 1));
+
+    const dates = [];
+    for (let i = 0; i < 5; i++) {
+      const date = new Date(startDate);
+      date.setDate(startDate.getDate() + i);
+      dates.push(date);
+    }
+
+    return dates;
   };
 
+  const currentWeekDates = getDatesOfWeek();
+
+  // Create an object to hold the table data
+  const tableData = {};
+
+  // Initialize tableData with weekdays and dates for each time slot
+  const timeSlots = ["04:00 PM", "05:30 PM", "07:00 PM", "08:30 PM"];
+  timeSlots.forEach((time) => {
+    tableData[time] = {};
+    currentWeekDates.forEach((date) => {
+      const day = date.toLocaleDateString("en-US", { weekday: "long" });
+      const formattedDate = date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      });
+      tableData[time][day] = {
+        date: formattedDate,
+        teamName: "", // Initialize with an empty string
+      };
+    });
+  });
+
+  // Populate the tableData with available time slots
   availableTimeSlots
     .filter((slot) => slot.locationName === locationName)
     .forEach((slot) => {
       const time = slot.time;
-      const day = slot.day.toLowerCase();
+      const day = slot.day;
       const teamName = slot.teamName;
       const clubName = slot.clubName;
-      if (tableData[time]) {
-        tableData[time][day] = teamName;
+      if (
+        tableData[time] &&
+        currentWeekDates.some(
+          (date) =>
+            date.toLocaleDateString("en-US", { weekday: "long" }) === day
+        )
+      ) {
+        tableData[time][day].teamName = teamName;
       }
     });
-
-  const tableRows = Object.entries(tableData).map(([time, rowData]) => ({
-    time,
-    ...rowData,
-  }));
 
   return (
     <table style={{ width: "100%" }}>
       <thead>
         <tr>
           <th style={{ width: "15%" }}></th>
-          {Object.keys(tableData["04:00 PM"]).map((day, index) => (
+          {currentWeekDates.map((date, index) => (
             <th
               style={{ color: "white", width: "17%", fontWeight: "500" }}
               key={index}
             >
-              {day.charAt(0).toUpperCase() + day.slice(1)}
+              {date.toLocaleDateString("en-US", { weekday: "long" })}
+              <br />
+              {date.toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+              })}
             </th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {Object.keys(tableData).map((time, index) => (
-          <tr style={{ color: "white" }} key={index}>
+        {timeSlots.map((time, rowIndex) => (
+          <tr style={{ color: "white" }} key={rowIndex}>
             <td>{time}</td>
-            {Object.entries(tableData[time]).map(([day, teamName], index) => {
+            {currentWeekDates.map((date, colIndex) => {
+              const day = date.toLocaleDateString("en-US", { weekday: "long" });
+              const teamData = tableData[time][day];
+              const teamName = teamData.teamName;
+              const formattedDate = teamData.date;
               const teamSlug = availableTimeSlots.find(
                 (slot) => slot.time === time && slot.teamName === teamName
               )?.teamSlug;
@@ -94,8 +113,8 @@ export default function PitchCalendar({
               )?.clubName;
 
               return (
-                <td key={index}>
-                  {teamName && (
+                <td key={colIndex}>
+                  {teamName ? (
                     <WhiteSlot>
                       {userData?.clubName === clubName ? (
                         <u>
@@ -119,6 +138,7 @@ export default function PitchCalendar({
                             clubName,
                             time,
                             day,
+                            formattedDate,
                             locationName,
                             locationSlug
                           )
@@ -134,6 +154,8 @@ export default function PitchCalendar({
                         </Link>
                       </TinyReportButton>
                     </WhiteSlot>
+                  ) : (
+                    <span style={{ color: "green" }}>{formattedDate}</span>
                   )}
                 </td>
               );
