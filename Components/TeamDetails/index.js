@@ -17,7 +17,7 @@ export default function TeamDetails({
   onSlotChange,
   onSlotRelease,
   availableTimeSlots,
-  onAvailableSlotsCountChange,
+  onUserClub,
 }) {
   const router = useRouter();
   const { slug } = router.query;
@@ -109,7 +109,7 @@ export default function TeamDetails({
           teamSlug={teamData.slug}
           teamName={teamData.name}
           clubName={userClub}
-          onAvailableSlotsCountChange={onAvailableSlotsCountChange}
+          onUserClub={onUserClub}
         />
         <BookedSlots
           availableTimeSlots={availableTimeSlots}
@@ -117,7 +117,7 @@ export default function TeamDetails({
           teamSlug={teamData.slug}
           clubName={userClub}
           clubNameSlots={clubNameSlots}
-          onAvailableSlotsCountChange={onAvailableSlotsCountChange}
+          onUserClub={onUserClub}
         />
       </SlotWrapper>
     </WrapperTwo>

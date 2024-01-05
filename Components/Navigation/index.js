@@ -3,7 +3,7 @@ import Counter from "../Counter";
 import { StyledTabWhite, StyledTabGreen } from "./StyledNavigation";
 import { useState } from "react";
 
-export default function Navigation({ availableSlotsCount }) {
+export default function Navigation({ availableTimeSlots, userClubForCounter }) {
   return (
     <ul>
       <li>
@@ -23,7 +23,10 @@ export default function Navigation({ availableSlotsCount }) {
       </li>
       <li>
         <StyledTabGreen>
-          <Counter availableSlotsCount={availableSlotsCount} />
+          <Counter
+            userClubForCounter={userClubForCounter}
+            availableTimeSlots={availableTimeSlots}
+          />
         </StyledTabGreen>
       </li>
     </ul>

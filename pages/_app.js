@@ -29,12 +29,8 @@ export default function App({ Component, pageProps, session }) {
   // this is for the report form
 
   //this is for slot count
-  const [availableSlotsCount, setAvailableSlotsCount] = useLocalStorageState(
-    "availableSlotsCount",
-    {
-      defaultValue: [],
-    }
-  );
+  const [userClubForCounter, setUserClubForCounter] = useState();
+
   //this is for slot count
 
   if (isLoadingAvailableSlotsData) {
@@ -167,19 +163,22 @@ export default function App({ Component, pageProps, session }) {
 
   // this is for slot count
 
-  function handleAvailableSlotsCountChange(count) {
-    setAvailableSlotsCount(count);
+  function handleUserClub(clubName) {
+    setUserClubForCounter(clubName);
   }
   //this is for slot count
 
-  console.log("slotscount", availableSlotsCount);
+  console.log("slotscount", userClubForCounter);
   console.log(availableSlotsData);
 
   // availableSlotsCount={availableSlotsCount}
   return (
     <SessionProvider session={session}>
       <SWRConfig value={{ fetcher }}>
-        <Layout availableSlotsCount={availableSlotsCount}>
+        <Layout
+          availableTimeSlots={availableSlotsData}
+          userClubForCounter={userClubForCounter}
+        >
           <GlobalStyle />
           <Component
             {...pageProps}
@@ -188,7 +187,7 @@ export default function App({ Component, pageProps, session }) {
             availableTimeSlots={availableSlotsData}
             onFormValues={handleFormValues}
             formValues={formValues}
-            onAvailableSlotsCountChange={handleAvailableSlotsCountChange}
+            onUserClub={handleUserClub}
           />
         </Layout>
       </SWRConfig>

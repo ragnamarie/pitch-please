@@ -4,14 +4,14 @@ export default function TeamDetailsPage({
   onSlotChange,
   onSlotRelease,
   availableTimeSlots,
-  onAvailableSlotsCountChange,
+  onUserClub,
 }) {
   return (
     <TeamDetails
       onSlotChange={onSlotChange}
       onSlotRelease={onSlotRelease}
       availableTimeSlots={availableTimeSlots}
-      onAvailableSlotsCountChange={onAvailableSlotsCountChange}
+      onUserClub={onUserClub}
     />
   );
 }
