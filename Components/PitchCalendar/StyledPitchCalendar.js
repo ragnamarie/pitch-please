@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const WhiteSlot = styled.span`
   position: relative;
-  padding: 12px;
+  padding: 5%;
   background-color: white;
   border-radius: 30px;
   border: none;

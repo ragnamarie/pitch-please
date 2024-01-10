@@ -51,4 +51,3 @@ export const EditProfileButton = styled.span`
   padding: 10px;
   height: 40px;
 `;
-
