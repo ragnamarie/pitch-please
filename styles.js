@@ -47,10 +47,7 @@ h2 {
   color: white;
 }
 
-h3 {
-  font-weight: 400;
-  color: white;
-}
+
 
 ul {    
   display: flex;

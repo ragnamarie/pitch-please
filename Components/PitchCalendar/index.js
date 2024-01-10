@@ -9,6 +9,8 @@ export default function PitchCalendar({
   locationSlug,
   onFormValues,
 }) {
+  const weekNumber = 2;
+
   const { data: session } = useSession();
   const {
     data: userData,
@@ -17,13 +19,20 @@ export default function PitchCalendar({
   } = useSWR(session ? `/api/users/${session.user?.googleId}` : null);
 
   // Function to get the dates of the current week (Monday to Friday)
-  const getDatesOfWeek = () => {
+  function getDatesOfWeek(weekNumber) {
     const currentDate = new Date();
-    const dayOfWeek = currentDate.getDay();
-    const startDate = new Date(currentDate);
+    const currentYear = currentDate.getFullYear();
 
-    // Adjust start date to Monday of the current week
-    startDate.setDate(startDate.getDate() - (dayOfWeek - 1));
+    // Get the first day of the year
+    const firstDayOfYear = new Date(currentYear, 0, 1);
+
+    // Calculate the first Monday of the year
+    const daysUntilFirstMonday = (8 - firstDayOfYear.getDay()) % 7;
+    const firstMonday = new Date(currentYear, 0, 1 + daysUntilFirstMonday);
+
+    // Calculate the start date of the specified week
+    const startDate = new Date(firstMonday);
+    startDate.setDate(firstMonday.getDate() + (weekNumber - 1) * 7);
 
     const dates = [];
     for (let i = 0; i < 5; i++) {
@@ -33,9 +42,9 @@ export default function PitchCalendar({
     }
 
     return dates;
-  };
+  }
 
-  const currentWeekDates = getDatesOfWeek();
+  const currentWeekDates = getDatesOfWeek(weekNumber);
 
   // Create an object to hold the table data
   const tableData = {};

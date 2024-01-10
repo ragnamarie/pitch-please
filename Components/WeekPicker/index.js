@@ -26,11 +26,11 @@ export default function WeekPicker() {
 
   return (
     <div>
-      <h3>
+      <p>
         <button onClick={goToPreviousWeek}>←</button>Current Week:{" "}
         {currentWeekNumber}
         <button onClick={goToNextWeek}>→</button>
-      </h3>
+      </p>
     </div>
   );
 }
