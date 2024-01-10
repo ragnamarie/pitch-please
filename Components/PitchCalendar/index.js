@@ -4,13 +4,12 @@ import useSWR from "swr";
 import { useSession } from "next-auth/react";
 
 export default function PitchCalendar({
+  weekNumber,
   availableTimeSlots,
   locationName,
   locationSlug,
   onFormValues,
 }) {
-  const weekNumber = 2;
-
   const { data: session } = useSession();
   const {
     data: userData,

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import PitchCalendar from "../PitchCalendar";
 import { WrapperTwo } from "@/styledPages";
 import WeekPicker from "../WeekPicker";
 
@@ -37,8 +36,7 @@ export default function PitchDetails({ availableTimeSlots, onFormValues }) {
       <Link href="/pitches">← Back to List</Link>
 
       <h2>{matchedPitch.name}</h2>
-      <WeekPicker />
-      <PitchCalendar
+      <WeekPicker
         availableTimeSlots={availableTimeSlots}
         locationName={matchedPitch.name}
         locationSlug={matchedPitch.slug}

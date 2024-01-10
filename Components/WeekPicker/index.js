@@ -1,6 +1,12 @@
 import { useState } from "react";
+import PitchCalendar from "../PitchCalendar";
 
-export default function WeekPicker() {
+export default function WeekPicker({
+  availableTimeSlots,
+  locationName,
+  locationSlug,
+  onFormValues,
+}) {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const currentWeekNumber = getWeekNumber(currentDate);
@@ -31,6 +37,13 @@ export default function WeekPicker() {
         {currentWeekNumber}
         <button onClick={goToNextWeek}>→</button>
       </p>
+      <PitchCalendar
+        weekNumber={currentWeekNumber}
+        availableTimeSlots={availableTimeSlots}
+        locationName={locationName}
+        locationSlug={locationSlug}
+        onFormValues={onFormValues}
+      />
     </div>
   );
 }
