@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { WrapperTwo } from "@/styledPages";
 import WeekPicker from "../WeekPicker";
+import { Wrapper } from "./StyledPitchDetails";
 
 export default function PitchDetails({ availableTimeSlots, onFormValues }) {
   const uniquePitches = [];
@@ -32,16 +32,17 @@ export default function PitchDetails({ availableTimeSlots, onFormValues }) {
   }
 
   return (
-    <WrapperTwo>
-      <Link href="/pitches">← Back to List</Link>
-
-      <h2>{matchedPitch.name}</h2>
+    <div>
+      <Wrapper>
+        <Link href="/pitches">← Back to List</Link>
+        <h2>{matchedPitch.name}</h2>
+      </Wrapper>
       <WeekPicker
         availableTimeSlots={availableTimeSlots}
         locationName={matchedPitch.name}
         locationSlug={matchedPitch.slug}
         onFormValues={onFormValues}
       />
-    </WrapperTwo>
+    </div>
   );
 }

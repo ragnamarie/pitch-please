@@ -138,7 +138,7 @@ export default function PitchCalendar({
                       ) : (
                         <span style={{ color: "green" }}>{teamName}</span>
                       )}
-                      <span>{clubName}</span>
+                      <span style={{ textAlign: "center" }}>{clubName}</span>
                       <TinyReportButton
                         onClick={() =>
                           onFormValues(

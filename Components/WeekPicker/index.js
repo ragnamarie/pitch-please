@@ -1,5 +1,10 @@
 import { useState } from "react";
 import PitchCalendar from "../PitchCalendar";
+import {
+  StyledSkipButton,
+  WeekPickerBox,
+  WhiteWeekNumber,
+} from "./StyledWeekPicker";
 
 export default function WeekPicker({
   availableTimeSlots,
@@ -32,11 +37,11 @@ export default function WeekPicker({
 
   return (
     <div>
-      <p>
-        <button onClick={goToPreviousWeek}>←</button>Current Week:{" "}
-        {currentWeekNumber}
-        <button onClick={goToNextWeek}>→</button>
-      </p>
+      <WeekPickerBox>
+        <StyledSkipButton onClick={goToPreviousWeek}>←</StyledSkipButton>
+        <WhiteWeekNumber>Week {currentWeekNumber}</WhiteWeekNumber>
+        <StyledSkipButton onClick={goToNextWeek}>→</StyledSkipButton>
+      </WeekPickerBox>
       <PitchCalendar
         weekNumber={currentWeekNumber}
         availableTimeSlots={availableTimeSlots}
