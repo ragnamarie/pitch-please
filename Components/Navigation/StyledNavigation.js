@@ -3,24 +3,29 @@ import styled from "styled-components";
 export const StyledTabWhite = styled.span`
   align-self: center;
   position: relative;
-  background-color: white;
+  background-color: ${({ isActive }) => (isActive ? "green" : "white")};
   font-size: 14px;
   font-family: Futura;
   font-weight: 700;
   word-wrap: break-word;
-  border: solid green;
+  border: solid ${({ isActive }) => (isActive ? "white" : "green")};
   border-radius: 30px;
   width: 117px;
   padding: 10px;
   height: 40px;
-  transition: background-color 0.3s ease, color 0.3s ease; /* Add a smooth transition effect for both color and background-color */
+  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+
+  a {
+    color: ${({ isActive }) => (isActive ? "white" : "green")};
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
 
   &:hover {
     border: solid white;
-    background-color: green; /* Change the background color on hover */
-    color: white; /* Change the font color on hover */
+    background-color: green;
+    color: white;
 
-    /* Override link color within the span */
     a {
       color: white !important;
     }
@@ -28,10 +33,9 @@ export const StyledTabWhite = styled.span`
 
   &:active {
     border: solid white;
-    background-color: green; /* Change the background color when clicked */
-    color: white; /* Change the font color when clicked */
+    background-color: green;
+    color: white;
 
-    /* Override link color within the span */
     a {
       color: white !important;
     }
