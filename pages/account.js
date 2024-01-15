@@ -28,16 +28,6 @@ export default function Account() {
           <SignInAndOutButton onClick={() => signOut()}>
             SIGN OUT
           </SignInAndOutButton>
-          <EditProfileButton>
-            <Link
-              style={{
-                color: "white",
-              }}
-              href="/editprofile"
-            >
-              EDIT PROFILE
-            </Link>
-          </EditProfileButton>
         </ButtonWrapper>
 
         <Profile user={data} />

@@ -1,4 +1,6 @@
 import { StyledList } from "./StyledProfile";
+import Link from "next/link";
+import { EditButton } from "./StyledProfile";
 
 export default function Profile({ user }) {
   console.log(user);
@@ -13,8 +15,22 @@ export default function Profile({ user }) {
 
   return (
     <StyledList>
-      <li>Club: {clubName}</li>
-      <li>Manager: {managerName}</li>
+      <li>
+        Club: {clubName}{" "}
+        <Link href="/editclub">
+          <EditButton>
+            <span style={{ color: "white" }}>EDIT</span>
+          </EditButton>
+        </Link>
+      </li>
+      <li>
+        Manager: {managerName}{" "}
+        <Link href="/editmanager">
+          <EditButton>
+            <span style={{ color: "white" }}>EDIT</span>
+          </EditButton>
+        </Link>
+      </li>
       <li>Username: {userName}</li>
       <li>E-Mail: {email}</li>
     </StyledList>

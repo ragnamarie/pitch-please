@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { WrapperTwo } from "../styledPages";
 
-export default function EditProfilePage() {
+export default function EditManager() {
   const { data: session, status } = useSession();
 
   const { data, isLoading, mutate } = useSWR(
@@ -13,30 +13,6 @@ export default function EditProfilePage() {
   );
 
   const router = useRouter();
-
-  async function handleEditClub(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const club = formData.get("club");
-
-    const response = await fetch(`/api/users/${data.googleId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        clubName: club,
-      }),
-    });
-
-    console.log(response);
-
-    if (response.ok) {
-      mutate();
-    }
-    router.push("/account");
-  }
 
   async function handleEditManager(event) {
     event.preventDefault();
@@ -68,11 +44,7 @@ export default function EditProfilePage() {
     return (
       <WrapperTwo>
         <Link href="/account">← Back to Account</Link>
-        <ProfileForm
-          user={data}
-          onEditClub={handleEditClub}
-          onEditManager={handleEditManager}
-        />
+        <ProfileForm user={data} onEditManager={handleEditManager} />
       </WrapperTwo>
     );
   }

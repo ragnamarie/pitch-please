@@ -17,27 +17,32 @@ export default function ProfileForm({ user, onEditClub, onEditManager }) {
 
   return (
     <>
-      <StyledForm onSubmit={onEditClub}>
-        <StyledTextBox
-          type="text"
-          id="club-input"
-          name="club"
-          defaultValue={isClubNameSet ? user.clubName : "Club"}
-          disabled={isClubNameSet}
-        />
-        <StyledEditButton type="submit" disabled={isClubNameSet}>
-          UPDATE CLUB
-        </StyledEditButton>
-      </StyledForm>
-      <StyledForm onSubmit={onEditManager}>
-        <StyledTextBox
-          type="text"
-          id="manager-input"
-          name="manager"
-          defaultValue={user.managerName || "Manager"}
-        />
-        <StyledEditButton type="submit">UPDATE MANAGER</StyledEditButton>
-      </StyledForm>
+      {onEditClub && (
+        <StyledForm onSubmit={onEditClub}>
+          <StyledTextBox
+            type="text"
+            id="club-input"
+            name="club"
+            defaultValue={isClubNameSet ? user.clubName : "Club"}
+            disabled={isClubNameSet}
+          />
+          <StyledEditButton type="submit" disabled={isClubNameSet}>
+            UPDATE
+          </StyledEditButton>
+        </StyledForm>
+      )}
+
+      {onEditManager && (
+        <StyledForm onSubmit={onEditManager}>
+          <StyledTextBox
+            type="text"
+            id="manager-input"
+            name="manager"
+            defaultValue={user.managerName || "Manager"}
+          />
+          <StyledEditButton type="submit">UPDATE</StyledEditButton>
+        </StyledForm>
+      )}
     </>
   );
 }
