@@ -10,13 +10,14 @@ export default createGlobalStyle`
   #__next {
     margin: 0;
     height: 100vh;
+    width: 100vh;
 
   }
 
   header {
 padding-top: 20px;
 padding-left: 30px;
-    width: 100%;
+    min-width: 100vw;
     border-bottom: solid green;
     height: 136px;
     background-color: white;
@@ -60,6 +61,7 @@ ul {
   gap: 25px;
   padding: 0;
   padding-top: 15px;
+  min-width: 100vw;
 }
 
 li {
