@@ -24,7 +24,7 @@ export const getServerSideProps = async (context) => {
 
   if (session) {
     return {
-      redirect: { destination: "/club" },
+      redirect: { destination: "/account" },
     };
   }
 

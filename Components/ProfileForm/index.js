@@ -13,7 +13,7 @@ export default function ProfileForm({ user, onEditProfile }) {
   // Destructure the first (and presumably only) object in the array
   const { club, manager } = user;
 
-  const isClubNameSet = user.clubName !== "";
+  const isClubNameSet = user.clubName !== null;
 
   return (
     <StyledForm onSubmit={onEditProfile}>
