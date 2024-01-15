@@ -22,7 +22,7 @@ export default function ProfileForm({ user, onEditClub, onEditManager }) {
           type="text"
           id="club-input"
           name="club"
-          defaultValue={isClubNameSet ? user.clubName : club}
+          defaultValue={isClubNameSet ? user.clubName : "Club"}
           disabled={isClubNameSet}
         />
         <StyledEditButton type="submit" disabled={isClubNameSet}>
