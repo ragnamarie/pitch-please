@@ -13,19 +13,22 @@ export default function ProfileForm({ user, onEditProfile }) {
   // Destructure the first (and presumably only) object in the array
   const { club, manager } = user;
 
+  const isClubNameSet = user.clubName !== "";
+
   return (
     <StyledForm onSubmit={onEditProfile}>
       <StyledTextBox
         type="text"
         id="club-input"
         name="club"
-        defaultValue="Club"
+        defaultValue={isClubNameSet ? user.clubName : "Club"}
+        disabled={isClubNameSet}
       />
       <StyledTextBox
         type="text"
         id="manager-input"
         name="manager"
-        defaultValue="Manager"
+        defaultValue={user.managerName || "Manager"}
       />
       <StyledEditButton type="submit">UPDATE</StyledEditButton>
     </StyledForm>
