@@ -14,12 +14,11 @@ export default function EditProfilePage() {
 
   const router = useRouter();
 
-  async function handleEditProfile(event) {
+  async function handleEditClub(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const club = formData.get("club");
-    const manager = formData.get("manager");
 
     const response = await fetch(`/api/users/${data.googleId}`, {
       method: "PATCH",
@@ -28,6 +27,29 @@ export default function EditProfilePage() {
       },
       body: JSON.stringify({
         clubName: club,
+      }),
+    });
+
+    console.log(response);
+
+    if (response.ok) {
+      mutate();
+    }
+    router.push("/account");
+  }
+
+  async function handleEditManager(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const manager = formData.get("manager");
+
+    const response = await fetch(`/api/users/${data.googleId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         managerName: manager,
       }),
     });
@@ -46,7 +68,11 @@ export default function EditProfilePage() {
     return (
       <WrapperTwo>
         <Link href="/account">← Back to Account</Link>
-        <ProfileForm user={data} onEditProfile={handleEditProfile} />
+        <ProfileForm
+          user={data}
+          onEditClub={handleEditClub}
+          onEditManager={handleEditManager}
+        />
       </WrapperTwo>
     );
   }
