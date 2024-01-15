@@ -5,7 +5,7 @@ import { Wrapper } from "./StyledPitchDetails";
 
 export default function PitchDetails({ availableTimeSlots, onFormValues }) {
   const uniquePitches = [];
-  const seenPitches = {}; // To keep track of seen locations
+  const seenPitches = {}; // In order to keep track of seen locations
 
   availableTimeSlots.forEach((availableTimeSlot) => {
     const locationName = availableTimeSlot.locationName;
