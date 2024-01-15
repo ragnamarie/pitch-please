@@ -17,6 +17,7 @@ export const WrapperTwo = styled.div`
   padding-top: 50px;
   display: grid;
   gap: 15px;
+  min-width: 100%;
 `;
 
 export const SignInAndOutButton = styled.button`

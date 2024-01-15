@@ -10,3 +10,16 @@ export const StyledList = styled.ul`
   font-weight: 500;
   color: white;
 `;
+
+export const EditButton = styled.span`
+  position: relative;
+  color: white;
+  background-color: black;
+  font-size: 10px;
+  font-family: Futura;
+  font-weight: 700;
+  word-wrap: break-word;
+  border: none;
+  border-radius: 30px;
+  padding: 5px;
+`;
