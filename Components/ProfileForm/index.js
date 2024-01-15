@@ -4,7 +4,7 @@ import {
   StyledTextBox,
 } from "./StyledProfileForm";
 
-export default function ProfileForm({ user, onEditProfile }) {
+export default function ProfileForm({ user, onEditClub, onEditManager }) {
   // Check if user array exists and has at least one item
   if (!user || user.length === 0) {
     return <div>User not found</div>;
@@ -16,21 +16,28 @@ export default function ProfileForm({ user, onEditProfile }) {
   const isClubNameSet = user.clubName !== null;
 
   return (
-    <StyledForm onSubmit={onEditProfile}>
-      <StyledTextBox
-        type="text"
-        id="club-input"
-        name="club"
-        defaultValue={isClubNameSet ? user.clubName : "Club"}
-        disabled={isClubNameSet}
-      />
-      <StyledTextBox
-        type="text"
-        id="manager-input"
-        name="manager"
-        defaultValue={user.managerName || "Manager"}
-      />
-      <StyledEditButton type="submit">UPDATE</StyledEditButton>
-    </StyledForm>
+    <>
+      <StyledForm onSubmit={onEditClub}>
+        <StyledTextBox
+          type="text"
+          id="club-input"
+          name="club"
+          defaultValue={isClubNameSet ? user.clubName : club}
+          disabled={isClubNameSet}
+        />
+        <StyledEditButton type="submit" disabled={isClubNameSet}>
+          UPDATE CLUB
+        </StyledEditButton>
+      </StyledForm>
+      <StyledForm onSubmit={onEditManager}>
+        <StyledTextBox
+          type="text"
+          id="manager-input"
+          name="manager"
+          defaultValue={user.managerName || "Manager"}
+        />
+        <StyledEditButton type="submit">UPDATE MANAGER</StyledEditButton>
+      </StyledForm>
+    </>
   );
 }
